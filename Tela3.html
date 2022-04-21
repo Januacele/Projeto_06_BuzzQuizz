@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="reset.css">
-        <link rel="stylesheet" href="estiloTela3.css">
+        <link rel="stylesheet" href="/Tela3/estiloTela3.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,33 +20,104 @@
     </head>
 
     <body>
+        <div class="Tela31">
+            <header>
+                <h1> BuzzQuizz </h1>
+            </header>
+    
+            <main>
+                <h2> Comece pelo começo </h2>
+    
+                <ul class="Criar-Quizz-Comeco-Tela3">
+                    <li class="Perguntas-Comeco-Quizz">
+                        <input class="titulo" type="text" placeholder="Título do seu quizz" />
+                        <input class="urlImagem" type="text" placeholder="URL da imagem do seu quizz" />
+                        <input class="QtsPerguntas" type="text" placeholder="Quantidade de perguntas do quizz" />
+                        <input class="QtdNiveis" type="text" placeholder="Quantidade de níveis do quizz" />
+                    </li>
+                </ul>
+            </main>
+    
+            <footer>
+                <div class="buttom-Quizz Comeco" onclick="trocarTelas3()"> Prosseguir pra criar perguntas </div>
+            </footer>
+        </div>
+
+        <div class="Tela32 escondido">
+            <header>
+                <h1> BuzzQuizz </h1>
+            </header>
+    
+            <main>
+                <h2> Crie suas perguntas </h2>
+    
+                <ul class="Criar-Perguntas-Tela3">
+                    <h3> Pergunta 1 </h3>
+                    <li class="Fazer-Perguntas-Respostas-Quizz">
+                        <input class="titulo" type="text" placeholder="Texto da pergunta" />
+                        <input class="urlImagem" type="text" placeholder="Cor de fundo da pergunta" />
+                    </li>
+
+                    <h3> Resposta correta </h3>
+                    <li class="Fazer-Perguntas-Respostas-Quizz">
+                        <input class="titulo" type="text" placeholder="Resposta correta" />
+                        <input class="urlImagem" type="text" placeholder="URL da imagem" />
+                    </li>
+
+                    <h3> Respostas incorretas </h3>
+                    <li class="Fazer-Perguntas-Respostas-Quizz">
+                        <input class="titulo" type="text" placeholder="Resposta incorreta 1" />
+                        <input class="urlImagem" type="text" placeholder="URL da imagem 1" />
+                    </li>
+
+                    <li class="Fazer-Perguntas-Respostas-Quizz">
+                        <input class="titulo" type="text" placeholder="Resposta incorreta 2" />
+                        <input class="urlImagem" type="text" placeholder="URL da imagem 2 " />
+                    </li>
+
+                    <li class="Fazer-Perguntas-Respostas-Quizz">
+                        <input class="titulo" type="text" placeholder="Resposta incorreta 3" />
+                        <input class="urlImagem" type="text" placeholder="URL da imagem 3" />
+                    </li>
+
+                    <li class="Fazer-Perguntas-Respostas-Quizz">
+                        <input class="titulo" type="text" placeholder="Resposta incorreta 4" />
+                        <input class="urlImagem" type="text" placeholder="URL da imagem 4" />
+                    </li>
+                </ul>
+
+                <ul class="Adicionar Segunda-Pergunta">
+                    <div class="criarPergunta">
+                        <h3> Pergunta 2 </h3>
+                        <img src="/Imagens/Vector.svg" alt="Criar perguntas">
+                    </div>
+                    
+                    <li></li>
+                </ul>
+
+                <ul class="Adicionar Terceira-Pergunta">
+                    <div class="criarPergunta">
+                        <h3> Pergunta 3 </h3>
+                        <img src="/Imagens/Vector.svg" alt="Criar perguntas">
+                    </div>
+                   
+                    <li></li>
+                </ul>
+
+            </main>
+    
+            <footer>
+                <div class="buttom-Quizz Prosseguir-Niveis" onclick="trocarTelas3()"> Prosseguir pra criar níveis </div>
+            </footer>
+           
+        </div> 
+    
+      
         
-        <header>
-            <h1> BuzzQuizz </h1>
-        </header>
-
-        <main>
-            <h2> Comece pelo começo </h2>
-
-            <ul class="Criar-Quizz-Comeco-Tela3">
-                <li class="Perguntas-Comeco-Quizz">
-                    <input class="titulo" type="text" placeholder="Título do seu quizz" />
-                    <input class="urlImagem" type="text" placeholder="URL da imagem do seu quizz" />
-                    <input class="QtsPerguntas" type="text" placeholder="Quantidade de perguntas do quizz" />
-                    <input class="QtdNiveis" type="text" placeholder="Quantidade de níveis do quizz" />
-                </li>
-            
-            </ul>
-        </main>
-
-
-        <footer>
-            <div class="buttom-Quizz-Comeco" onclick="CriarQuizzComeco()"> Prosseguir pra criar perguntas </div>
-        </footer>
-
-
+        
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="ScriptTela3.js"></script>
+        <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+        <script src="./Tela3/ScriptTela3.js"></script>
 
     </body>
 
