@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="estiloTela3.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+        <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+        
+        <title>Projeto_06_BuzzQuizz</title>
+
+    </head>
+
+    <body>
+        
+        <header>
+            <h1> BuzzQuizz </h1>
+        </header>
+
+        <main>
+            <h2> Comece pelo começo </h2>
+
+            <ul class="Criar-Quizz-Comeco-Tela3">
+                <li class="Perguntas-Comeco-Quizz">
+                    <input class="titulo" type="text" placeholder="Título do seu quizz" />
+                    <input class="urlImagem" type="text" placeholder="URL da imagem do seu quizz" />
+                    <input class="QtsPerguntas" type="text" placeholder="Quantidade de perguntas do quizz" />
+                    <input class="QtdNiveis" type="text" placeholder="Quantidade de níveis do quizz" />
+                </li>
+            
+            </ul>
+        </main>
+
+
+        <footer>
+            <div class="buttom-Quizz-Comeco" onclick="CriarQuizzComeco()"> Prosseguir pra criar perguntas </div>
+        </footer>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="ScriptTela3.js"></script>
+
+    </body>
+
+</html>
