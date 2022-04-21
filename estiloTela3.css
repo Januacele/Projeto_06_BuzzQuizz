@@ -1,0 +1,94 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    width: 375px;
+    font-family: 'Roboto';
+    font-weight: bold;
+    background: #E5E5E5;
+    
+}
+
+header{
+    position: absolute;
+    width: 375px;
+    height: 69px;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #EC362D;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+h1{
+    font-size: 37px;
+    align-items: center;
+    color: #FFFFFF;
+}
+
+h2{
+    font-size: 20px;
+    line-height: 23px;
+    margin-top: 106px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ul{
+    position: absolute;
+    width: 375px;
+    height: 256px;
+    left: 0px;
+    top: 158px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+li{
+    margin-top: 21px;
+    margin-left: 16px;
+    margin-right: 18px;
+    list-style:none;
+}
+input{
+    width: 341px;
+    height: 46px;
+    left: 16px;
+    top: 21px;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    margin-top: 9px; 
+}
+
+::placeholder{
+    font-style: italic;
+    font-size: 19px;
+    color: #BABABA;
+}
+
+.buttom-Quizz-Comeco{
+    position: absolute;
+    width: 324px;
+    height: 54px;
+    left: 24px;
+    top: 443px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #EC362D;
+    border-radius: 15px;
+    font-size: 18px;
+    color: #FFF5F4;
+}
+
+.buttom-Quizz-Comeco:hover{
+    cursor: pointer;
+    filter: brightness(90%);
+}
+
+.buttom-Quizz-Comeco:active{
+    transform: translate(2px,2px);
+}
