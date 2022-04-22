@@ -50,3 +50,7 @@ main span {
     width: 330px;
     border-radius: 5px;
 }
+
+.escondido{
+    display: none;
+}
