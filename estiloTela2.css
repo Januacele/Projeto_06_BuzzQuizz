@@ -1,4 +1,4 @@
-body {
+* {
     font-family: 'Roboto';
 }
 
@@ -51,18 +51,16 @@ main {
 
 .pergunta {
     width: 60%;
-    height: 670px;
     background-color: #FFFFFF;
     margin-top: 40px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
 }
 
 .tituloPergunta {
     width: 91%;
-    height: 20%;
+    height: 140px;
     color: white;
     font-weight: 700;
     font-size: 23px;
@@ -70,22 +68,40 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 30px 0px 10px 0px;
+    margin: 30px auto 20px auto;
 }
 
 .resposta img {
-    width: 330px;
+    width: 323px;
     height: 175px;
 }
 
 .resposta span {
+    width: 325px;
     font-weight: 700;
     font-size: 20px;
     margin-top: 10px;
+    word-break: break-all;
 }
 
 .resposta {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    margin: 0px 0px 20px 33px;
+}
+
+.opaca {
+    opacity: 20%;
+}
+
+.opaca.selecionada {
+    opacity: 100%;
+}
+
+.certa .cor {
+    color: #009C22;
+}
+
+.errada .cor {
+    color:#FF4B4B;
 }

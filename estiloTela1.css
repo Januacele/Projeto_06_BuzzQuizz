@@ -47,6 +47,7 @@ main span {
 
 .quizzes img {
     height: 180px;
-    width: 330px;
+    width: 325px;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
