@@ -11,7 +11,7 @@ function carregarQuizz(resposta){
     console.log(quizz)
     let cabecalho = document.querySelector(".titulo");
     let pergunta = document.querySelector("main");
-    let num = 33; //id do quizz
+    let num = 25; //id do quizz
 
     //titulo e imagem do quizz
     cabecalho.innerHTML = `<img src="${quizz[num].image}" />
@@ -48,6 +48,7 @@ function aleatorio(){
     return Math.random() - 0.5;
 }
 
+//comportamento ao clicar na resposta
 function selecionaResposta(elemento){
     elemento.classList.add("selecionada");
     let imagensOpacas = elemento.parentNode.querySelectorAll('.resposta');

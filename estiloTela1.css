@@ -49,5 +49,12 @@ main span {
     height: 180px;
     width: 325px;
     border-radius: 5px;
+<<<<<<< HEAD
     margin-bottom: 10px;
+=======
+}
+
+.escondido{
+    display: none;
+>>>>>>> fd9b67bec37c2927e9a41df70fe60bdb9168973c
 }
