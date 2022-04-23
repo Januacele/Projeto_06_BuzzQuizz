@@ -3,15 +3,36 @@ let quizz, arrayRespostas;
 
 //get dos quizzes na API
 let promise = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes');
-promise.then(carregarQuizz);
+promise.then(listarQuizzes);
 
-//carregar página do quizz
-function carregarQuizz(resposta){
+//listar quizzes Tela 1
+function listarQuizzes(resposta){
     quizz = resposta.data;
-    console.log(quizz)
+    let organizarHTML = document.querySelector(".quizzes");
+
+    for(let i = 0; i < quizz.length; i++){
+        organizarHTML.innerHTML += `<div class="imagem" style="background-image: 
+                                    linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0) 0%, 
+                                    rgba(0, 0, 0, 0.5) 65%, #000000 100%), url(${quizz[i].image})"
+                                    onclick="carregarQuizz()">
+                                    <span>${quizz[i].title}</span>
+                                    </div>`
+    }
+}
+
+//carregar página do quizz (Tela 2)
+function carregarQuizz(){
+    let tela2 = document.querySelector(".Tela1");    
+    tela2.innerHTML = `<div class="Tela2">
+                        <header>
+                            BuzzQuizz
+                        </header>
+                        <div class="titulo"></div>
+                        <main></main>`;
+ 
     let cabecalho = document.querySelector(".titulo");
     let pergunta = document.querySelector("main");
-    let num = 25; //id do quizz
+    let num = 23; //id do quizz
 
     //titulo e imagem do quizz
     cabecalho.innerHTML = `<img src="${quizz[num].image}" />
