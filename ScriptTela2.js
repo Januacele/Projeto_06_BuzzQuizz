@@ -1,9 +1,28 @@
 //variveis globais
-let quizz, arrayRespostas;
+let quizz, arrayRespostas, numPerguntas;
+let contadorRespostas = 0;
 
-//get dos quizzes na API
-let promise = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes');
-promise.then(listarQuizzes);
+iniciarTela1();
+
+//carregar Tela 1
+function iniciarTela1(){
+    let tela1 = document.querySelector(".Tela1");
+    tela1.innerHTML = ` <header>
+                            BuzzQuizz
+                        </header>
+                        <main>
+                            <div class="novoQuizz">
+                                <div class="quizzesUser">Você não criou nenhum quizz ainda :(</div>
+                                <div class="criarQuizz">Criar Quizz</div>
+                            </div>
+                            <span style="width: 80%; font-weight: 700">Todos os Quizzes</span>
+                            <div class="quizzes"></div>
+
+                        </main>`
+    //get dos quizzes na API
+    let promise = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes');
+    promise.then(listarQuizzes);
+}
 
 //listar quizzes Tela 1
 function listarQuizzes(resposta){
@@ -14,14 +33,14 @@ function listarQuizzes(resposta){
         organizarHTML.innerHTML += `<div class="imagem" style="background-image: 
                                     linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0) 0%, 
                                     rgba(0, 0, 0, 0.5) 65%, #000000 100%), url(${quizz[i].image})"
-                                    onclick="carregarQuizz()">
+                                    onclick="carregarQuizz(${i})">
                                     <span>${quizz[i].title}</span>
                                     </div>`
     }
 }
 
 //carregar página do quizz (Tela 2)
-function carregarQuizz(){
+function carregarQuizz(num){
     let tela2 = document.querySelector(".Tela1");    
     tela2.innerHTML = `<div class="Tela2">
                         <header>
@@ -29,11 +48,12 @@ function carregarQuizz(){
                         </header>
                         <div class="titulo"></div>
                         <main></main>`;
- 
+
     let cabecalho = document.querySelector(".titulo");
     let pergunta = document.querySelector("main");
-    let num = 23; //id do quizz
+    numPerguntas = quizz[num].questions.length;
 
+    console.log(num);
     //titulo e imagem do quizz
     cabecalho.innerHTML = `<img src="${quizz[num].image}" />
                            <span>${quizz[num].title}</span>`
@@ -42,10 +62,11 @@ function carregarQuizz(){
     for(let i = 0; i < quizz[num].questions.length; i++){
         pergunta.innerHTML += `<div class="pergunta">
                                     <div class="tituloPergunta">${quizz[num].questions[i].title}</div>
+                                    <div class="respostas"></div>
                                </div>`
     }
 
-    let respostas = document.querySelectorAll(".pergunta");
+    let respostas = document.querySelectorAll(".respostas");
 
     //listar respostas em ordem aleatória
     for(let i = 0; i < respostas.length; i++){
@@ -71,6 +92,7 @@ function aleatorio(){
 
 //comportamento ao clicar na resposta
 function selecionaResposta(elemento){
+    contadorRespostas++;
     elemento.classList.add("selecionada");
     let imagensOpacas = elemento.parentNode.querySelectorAll('.resposta');
     let corResposta = elemento.parentNode.querySelectorAll('span');
@@ -79,4 +101,21 @@ function selecionaResposta(elemento){
         imagensOpacas[i].classList.add("opaca");
         corResposta[i].classList.add("cor");
     }
+
+    if(contadorRespostas === numPerguntas){
+        mostrarNivel();
+    }
+}
+
+function mostrarNivel(){
+
+    let caixaNivel = document.querySelector("main");
+
+    caixaNivel.innerHTML += `<div class="nivel">
+                                    <div class="tituloNivel"></div>
+                                    <img src="" />
+                                    <div class="resumoNivel"></div>
+                               </div>
+                               <span>Reiniciar Quizz</span>
+                               <span>Voltar para home</span>`
 }
