@@ -7,8 +7,6 @@ const buttomAcessarQuizz = document.querySelector(".Acessar-Quizz");
 const buttomHome = document.querySelector(".voltarHome");
 const meuTitulo = "";
 
-
-
 //Funções para adicinar e remover o display: none, que está dentro da classe escondido
 
 function DisplayTela31 (){
@@ -106,3 +104,18 @@ function ValidarTela3Comeco(){
     
 }
 
+function ValdidarTela3Perguntas (){
+    let minhaQtdPerguntas = document.querySelector(".QtsPerguntas").value;
+    let addPerguntas = document.querySelector(".adicionarPerguntas");
+    for (let i=0 ; i< minhaQtdPerguntas; i++){
+        addPerguntas.innerHTML += `
+        <ul class="Adicionar Segunda-Pergunta">
+                    <div class="criarPergunta">
+                        <h3> Pergunta ${i} </h3>
+                        <img class="botaoCriarPergunta" src="/Imagens/Vector.svg" alt="Criar perguntas">
+                    </div>
+                </ul>`
+               
+    }
+
+}
