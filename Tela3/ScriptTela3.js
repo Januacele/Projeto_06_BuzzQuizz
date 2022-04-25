@@ -1,6 +1,4 @@
 
-let dataId=[];
-
 let newQuizz={};
 let NewQuestion = [];
 let NewLevel = [];
@@ -13,16 +11,94 @@ let numberOfLevels = 0
 let GetThisQuizzID_ = undefined
 let quizzUrl;
 let quizzTitle;
+
+
+
+
 function GetUserQuizzData(page) {
 
-const page1 = document.querySelector('.Tela1');
-const page2 = document.querySelector('.Tela2');
-const page3 = document.querySelector('.Tela3');
-const quizzInfo = document.querySelector('.informacao-quizz');
-const quizzQuestions = document.querySelector('.perguntas-quizz');
-const quizzLevels = document.querySelector('.niveis-quizz');
-const quizzSuccess = document.querySelector('.sucesso-quizz');
+    const page1 = document.querySelector('.Tela1');
+    const page2 = document.querySelector('.Tela2');
+    const page3 = document.querySelector('.Tela3');
+    const quizzInfo = document.querySelector('.info-quizz');
+    const quizzQuestions = document.querySelector('.perguntas-quizz');
+    const quizzLevels = document.querySelector('.niveis-quizz');
+    const quizzSuccess = document.querySelector('.sucesso-quizz');
 
+    page1.innerHTML = "";
+    page1.innerHTML = `<section class="Tela3">
+    <!-- esconder aqui -->
+    <section class="info-quizz">
+        <!-- esconder aqui -->
+
+        <div class="info-quizz-titulo">
+            <h2> Comece pelo começo </h2>
+        </div>
+        
+        <div class="info-quizz-input-container">
+            <input class="usuario-titulo" type="text" placeholder="Título do seu quizz" />
+            <input class="usuario-url" type="text" placeholder="URL da imagem do seu quizz" />
+            <input class="usuario-qtd-perguntas" type="text" placeholder="Quantidade de perguntas do quizz" />
+            <input class="usuario-niveis" type="text" placeholder="Quantidade de níveis do quizz" />
+
+            <div class="info-quizz-button-box">
+                <button onclick="GetUserQuizzData('perguntas')">
+                    Prosseguir para criar perguntas
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="perguntas-quizz escondido">
+
+        <div class="perguntas-quizz-titulo">
+            <h2> Crie suas perguntas </h2>
+        </div>
+
+        <div class="perguntas-quizz-input-container"> 
+
+        </div>
+
+    </section>
+
+
+    <section class="niveis-quizz escondido">
+
+        <div class="niveis-quizz-titulo">
+            <h2> Agora, decida os níveis! </h2>
+        </div>
+
+        <div class="niveis-quizz-input-container">
+
+        </div>
+
+    </section>
+
+
+    <section class="sucesso-quizz escondido">
+         
+        <div class="sucesso-quizz-titulo">
+            <h2> Seu quizz está pronto! </h2>
+        </div>
+
+        <div class="sucesso-quizz-container">
+
+            <div class="sucesso-quizz-box"></div>
+
+            <div class="sucesso-quizz-btn">
+                <button onclick="getUserQuizzDate('acesso')"> Acessar Quizz </button>
+            </div>
+
+            <div class="sucesso-quizz-btn">
+                <button onclick="getUserQuizzDate('home')"> Voltar </button>
+            </div> 
+        </div>
+
+    </section>
+
+</section>`
    
 // Quando dentro da página for encontrada a classe 'info', click do botao para criar quizz
     if (page === 'info') {
@@ -33,6 +109,7 @@ const quizzSuccess = document.querySelector('.sucesso-quizz');
         let quizzQuestionsAmount = document.querySelector('.usuario-qtd-perguntas').value
         let quizzLevelsAmount = document.querySelector('.usuario-niveis').value
 
+        //Passa os valores de string para número
         quizzQuestionsAmount = parseInt(quizzQuestionsAmount)
         quizzLevelsAmount = parseInt(quizzLevelsAmount)
 
@@ -64,8 +141,8 @@ const quizzSuccess = document.querySelector('.sucesso-quizz');
         // vai esconder essa primeira tela e pular para a próxima (criar perguntas)
 
         if (CheckInfoQuizzData(quizzTitle, quizzUrl, quizzQuestionsAmount, quizzLevelsAmount)) {
-            quizzQuestions.classList.remove('hidden')
-            quizzInfo.classList.add('hidden')
+            quizzQuestions.classList.remove('escondido')
+            quizzInfo.classList.add('escondido')
             numberOfQuestions = quizzQuestionsAmount
             RenderQuestions(quizzQuestionsAmount, currentPage)
         }
@@ -289,7 +366,7 @@ function RenderLevels(page, number) {
         }
     }
     LevelsInputContainer.innerHTML += `
-    <div class="quizz-levels-final-btn"><button onclick="GetUserQuizzData('success')">Finalizar Quizz</button></div>`
+    <div class="quizz-levels-final-btn"><button onclick="GetUserQuizzData('sucesso')">Finalizar Quizz</button></div>`
 }
 
 //Pega as informações que o usuário colocou para os níveis
@@ -388,3 +465,45 @@ function GenerateUserRequestPost(questions, levels) {
     })
 }
 
+function createNewQuestion(index) {
+    const newDataQuestion = {
+        "title": GetFormData[index].quizzQuestion,
+        "color": GetFormData[index].quizzQuestionColor,
+        "answers": [
+            {
+                "text": GetFormData[index].quizzRightAnswer,
+                "image": GetFormData[index].quizzRightAnswerURL,
+                "isCorrectAnswer": true
+            },
+            {
+                "text": GetFormData[index].quizzIncorrectAnswer1,
+                "image": GetFormData[index].quizzIncorrectAnswerURL1,
+                "isCorrectAnswer": false
+            }
+        ]
+    }
+    if (GetFormData[index].quizzIncorrectAnswer2 != "") {
+        newDataQuestion.answers.push({
+            "text": GetFormData[index].quizzIncorrectAnswer2,
+            "image": GetFormData[index].quizzIncorrectAnswerURL3,
+            "isCorrectAnswer": false
+        })
+    }
+    if (GetFormData[index].quizzIncorrectAnswer3 != "") {
+        newDataQuestion.answers.push({
+            "text": GetFormData[index].quizzIncorrectAnswer3,
+            "image": GetFormData[index].quizzIncorrectAnswerURL3,
+            "isCorrectAnswer": false
+        })
+    }
+    return newDataQuestion;
+}
+function createNewLevel(index) {
+    const newDataLevel = {
+        "title": GetFormLevel[index].quizzLevel,
+        "minValue": GetFormLevel[index].LevelPorcent,
+        "image": GetFormLevel[index].LevelURL,
+        "text": GetFormLevel[index].LevelDescription
+    }
+    return newDataLevel;
+}

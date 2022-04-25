@@ -1,5 +1,10 @@
-
-
+let dataId=[];
+let dataKey=[];
+let responseQuizz;
+// CreateNewQuizz(myQuizz)
+let newQuizz={};
+let NewQuestion = [];
+let NewLevel = [];
 
 //Função para criar um novo quizz
 
@@ -24,9 +29,8 @@ function CreateNewQuizz(){
     
  }
 
- //Criando novas perguntas conforme decisão do usuário
+
  function createNewQuestion(index){
-     //Objeto com os dados do que foi preenchido nas questões. Responde de forma dinâmica 
     const newDataQuestion= {
         "title":GetFormData[index].quizzQuestion,
         "color":GetFormData[index].quizzQuestionColor,
@@ -46,7 +50,7 @@ function CreateNewQuizz(){
     if(GetFormData[index].quizzIncorrectAnswer2 != ""){
     newDataQuestion.answers.push({
         "text":GetFormData[index].quizzIncorrectAnswer2,
-        "image":GetFormData[index].quizzIncorrectAnswerURL2,
+        "image":GetFormData[index].quizzIncorrectAnswerURL3,
         "isCorrectAnswer": false
     })
     }
@@ -60,9 +64,6 @@ function CreateNewQuizz(){
     return newDataQuestion;
 }
 
-
-//Criando um novo nível conforme decisão do usuário
-
 function createNewLevel(index){
     const newDataLevel = {
         "title": GetFormLevel[index].quizzLevel,
@@ -72,6 +73,7 @@ function createNewLevel(index){
     }
     return newDataLevel;
 }
+
 
 //Fazendo post na api dos dados inseridos pelo usuário
 function postQuizz(quizz) {
