@@ -1,4 +1,4 @@
-const API = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
+/*const API = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
 
 const buttom1 = document.querySelector(".Comeco");
 const buttom2 = document.querySelector(".Prosseguir-Niveis");
@@ -52,7 +52,7 @@ function trocarTelas (){
 //Validações para Criação do Quizz - Começo
 function ValidarTela3Comeco(){
     const meuTitulo = document.querySelector(".titulo").value;
-    const minhaUrlImg = document.querySelector(".urlImagem").value;
+    const minhaUrlImg = document.querySelectorAll(".urlImagem").value;
     const minhaQtdPerguntas = document.querySelector(".QtsPerguntas").value;
     const meusNiveis = document.querySelector(".QtdNiveis").value;
     console.log(meuTitulo);
@@ -104,7 +104,7 @@ function ValidarTela3Comeco(){
     
 }
 
-function ValdidarTela3Perguntas (){
+function ValidarTela3Perguntas (){
     let minhaQtdPerguntas = document.querySelector(".QtsPerguntas").value;
     let addPerguntas = document.querySelector(".adicionarPerguntas");
     for (let i=0 ; i< minhaQtdPerguntas; i++){
@@ -118,4 +118,43 @@ function ValdidarTela3Perguntas (){
                
     }
 
-}
+    //Texto da pergunta deve ter no mínimo 20 caracteres
+
+    const minhaPergunta = document.querySelectorAll(".textoPergunta").value;
+    const minhaCor = document.querySelectorAll(".cor-fundo").value;
+
+    if (minhaPergunta.length < 20) { 
+        buttom2.removeEventListener('click', DisplayTela33);
+        buttom2.addEventListener('click', DisplayTela32);
+        alert("A pergunta deve conter no mínimo 20 letras, incluindo os espaços");
+            
+    } else {
+        buttom2.addEventListener('click', DisplayTela33);
+    }
+
+    //Cor de fundo no formato hexadecimal
+    
+    if (minhaCor.includes("#") === false && minhaCor.length < 6) { 
+        
+        buttom2.removeEventListener('click', DisplayTela33);
+        buttom2.addEventListener('click', DisplayTela32);
+        alert("A cor deve ser no formato hexadecimal");
+        
+    } else {
+        buttom2.addEventListener('click', DisplayTela33);
+    }
+
+    //Imagem deve ser no formato URL 
+
+    if (minhaUrlImg.includes("https://") === false) { 
+        
+        buttom2.removeEventListener('click', DisplayTela33);
+        buttom2.addEventListener('click', DisplayTela32);
+        alert("A imagem deve ser um link (Formato URL)");
+        
+    } else {
+        buttom2.addEventListener('click', DisplayTela33);
+    }
+
+}*/
+
