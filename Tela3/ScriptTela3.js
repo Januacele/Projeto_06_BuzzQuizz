@@ -262,6 +262,91 @@ function CheckQuestionsQuizzData(page, array) {
     }
     return true
 }
+
+const CheckHexa = (hex) => hex === '' || hex.includes('#') === false || hex.length !== 7 ? true : false
+
+let currentLevel = 1
+
+//Validando as informações do nível colocadas para criar o quizz
+
+function RenderLevels(page, number) {
+
+    const LevelsInputContainer = document.querySelector('.perguntas-quizz-input-container')
+    LevelsInputContainer.innerHTML = `
+    <div class="quizz-levels-text"><h1>Nivel ${currentLevel}</h1></div>
+    <input type="text" id = "x1" placeholder="Título do nível" data-identifier="level">
+    <input type="text" id = "x2" placeholder="% de acerto mínima" data-identifier="level">
+    <input type="text" id = "x3" placeholder="URL da imagem do nível" data-identifier="level">
+    <input type="text" id = "x4" placeholder="Descrição do nível" data-identifier="level">`
+
+    for (let i = 1; i <= number; i++) {
+        if (page !== i) {
+            LevelsInputContainer.innerHTML += `
+            <div class="quizz-levels-box" id = '${i}'>
+                <div class="text"> <h1>Nivel ${i}</h1></div>
+                <div class="icon" onclick="EditThisLevel(${i})" data-identifier="expand"><ion-icon name="create-outline"></ion-icon></div>
+            </div>`
+        }
+    }
+    LevelsInputContainer.innerHTML += `
+    <div class="quizz-levels-final-btn"><button onclick="GetUserQuizzData('success')">Finalizar Quizz</button></div>`
+}
+
+//Pega as informações que o usuário colocou para os níveis
+
+let GetFormLevel = []
+
+function EditThisLevel(number) {
+
+    let quizzLevel = document.getElementById('x1').value
+    let LevelPorcent = document.getElementById('x2').value
+    let LevelURL = document.getElementById('x3').value
+    let LevelDescription = document.getElementById('x4').value
+
+    GetFormLevel[currentPage - 1] = {
+        quizzLevel: quizzLevel,
+        LevelPorcent: LevelPorcent,
+        LevelURL: LevelURL,
+        LevelDescription: LevelDescription
+    }
+    // antes de editar a proxima pagina, checa se a pagina atual esta preenchida corretamente
+    if (CheckLevelQuizzData(currentPage - 1, GetFormLevel)) {
+        currentPage = number
+        currentLevel = number
+        RenderLevels(currentLevel, numberOfLevels)
+    }
+}
+
+//Validando as respostas dadas na escolha dos níveis 
+
+let ValidateUserQuizzLevel = false
+
+function CheckLevelQuizzData(page, array) {
+    if (array[page] === null || array[page] === undefined) {
+        alert('Voce precisa preencher as informacoes de todas os niveis antes de continuar')
+        return false
+    }
+    else {
+        if (array[page].quizzLevel === '' || array[page].quizzLevel.length < 10) {
+            return alert(`O texto do nivel ${page + 1} deve ter no mínimo 10 caracteres`)
+        }
+        if (array[page].LevelPorcent === '' || array[page].LevelPorcent < 0 || array[page].LevelPorcent > 100) {
+            return alert(`A porcentagem de acerto minimo do nivel ${page + 1} deve ser entre 0 e 100`)
+        }
+        if (!CheckURL(array[page].LevelURL)) {
+            return alert(`A imagem do nivel ${page + 1} deve ter formato de URL`)
+        }
+        if (array[page].LevelDescription === '' || array[page].LevelDescription.length < 30) {
+            return alert(`A descrição do nivel ${page + 1} deve ter no mínimo 30 caracteres`)
+        }
+    }
+    if (currentPage === numberOfLevels) {
+        ValidateUserQuizzLevel = true
+    }
+    return true
+}
+
+
 //Função para criar um novo quizz
 
 function CreateNewQuizz(){
