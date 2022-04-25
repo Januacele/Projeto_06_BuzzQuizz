@@ -55,39 +55,49 @@ main {
     margin-top: 40px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .tituloPergunta {
-    width: 91%;
+    width: 90%;
     height: 140px;
     color: white;
     font-weight: 700;
     font-size: 23px;
-    background-color: #434CA0;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    word-wrap: break-all;
     margin: 30px auto 20px auto;
 }
 
+.respostas {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .resposta img {
-    width: 323px;
+    width: 330px;
     height: 175px;
 }
 
 .resposta span {
-    width: 325px;
+    width: 330px;
     font-weight: 700;
     font-size: 20px;
-    margin-top: 10px;
+    margin: 5px 0px 20px 0px;
     word-break: break-all;
 }
 
 .resposta {
     display: flex;
     flex-direction: column;
-    margin: 0px 0px 20px 33px;
 }
 
 .opaca {
@@ -104,4 +114,73 @@ main {
 
 .errada .cor {
     color:#FF4B4B;
+}
+
+.nivel {
+    width: 60%;
+    background-color: #FFFFFF;
+    margin: 40px 0px 60px 0px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.tituloNivel {
+    width: 90%;
+    height: 100px;
+    background-color: #EC362D;
+    color: white;
+    font-weight: 700;
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    word-wrap: break-all;
+    margin: 30px auto 20px auto;
+}
+
+.resumoNivel {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.nivel img {
+    width: 48%;
+    height: 270px;
+}
+
+.resumoNivel div {
+    width: 48%;
+    height: 270px;
+    word-wrap: break-all;
+}
+
+.reiniciar {
+    width: 260px;
+    height: 50px;
+    background-color: #EC362D;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.voltarTela1 {
+    color: #818181;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 60px;
+    cursor: pointer;
 }

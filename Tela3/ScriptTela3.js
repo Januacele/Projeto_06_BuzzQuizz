@@ -55,7 +55,7 @@ function ValidarTela3Comeco(){
     const minhaUrlImg = document.querySelectorAll(".urlImagem").value;
     const minhaQtdPerguntas = document.querySelector(".QtsPerguntas").value;
     const meusNiveis = document.querySelector(".QtdNiveis").value;
-    console.log(meuTitulo);
+    //console.log(meuTitulo);
 
     //Título do quizz: deve ter no mínimo 20 e no máximo 65 caracteres
 
@@ -101,7 +101,7 @@ function ValidarTela3Comeco(){
     } else {
         buttom1.addEventListener('click', DisplayTela32);
     }
-    
+    ValidarTela3Perguntas(); //janu, pra testar chamei a função aqui! mas nao sei se é a melhor forma
 }
 
 function ValidarTela3Perguntas (){
