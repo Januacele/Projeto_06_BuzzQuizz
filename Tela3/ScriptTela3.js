@@ -15,17 +15,19 @@ let quizzUrl;
 let quizzTitle;
 function GetUserQuizzData(page) {
 
-    const page1 = document.querySelector('.Tela1');
-    const page2 = document.querySelector('.Tela2');
-    const page3 = document.querySelector('.Tela3');
-    const quizzInfo = document.querySelector('.informacao-quizz');
-    const quizzQuestions = document.querySelector('.perguntas-quizz');
-    const quizzLevels = document.querySelector('.niveis-quizz');
-    const quizzSuccess = document.querySelector('.sucesso-quizz');
+const page1 = document.querySelector('.Tela1');
+const page2 = document.querySelector('.Tela2');
+const page3 = document.querySelector('.Tela3');
+const quizzInfo = document.querySelector('.informacao-quizz');
+const quizzQuestions = document.querySelector('.perguntas-quizz');
+const quizzLevels = document.querySelector('.niveis-quizz');
+const quizzSuccess = document.querySelector('.sucesso-quizz');
 
    
+// Quando dentro da página for encontrada a classe 'info', click do botao para criar quizz
     if (page === 'info') {
 
+        //Abre na tela 3.1 e procura pelas primeiras informações para criar o quizz
         quizzTitle = document.querySelector('.usuario-titulo').value
         quizzUrl = document.querySelector('.usuario-url').value
         let quizzQuestionsAmount = document.querySelector('.usuario-qtd-perguntas').value
@@ -34,7 +36,12 @@ function GetUserQuizzData(page) {
         quizzQuestionsAmount = parseInt(quizzQuestionsAmount)
         quizzLevelsAmount = parseInt(quizzLevelsAmount)
 
+        //Se as informações estiverem satisfeitas, para isso usamos a função CheckInfoQuizzData
+        // vai esconder essa primeira tela e pular para a próxima (criar perguntas)
+
         if (CheckInfoQuizzData(quizzTitle, quizzUrl, quizzQuestionsAmount, quizzLevelsAmount)) {
+
+            //Já encontrou no dom o local onde estão as perguntas do quizz e armazenou numa constante de uso geral
             quizzQuestions.classList.remove('escondido')
             quizzInfo.classList.add('escondido')
             numberOfQuestions = quizzQuestionsAmount
@@ -42,6 +49,7 @@ function GetUserQuizzData(page) {
         }
     }
 
+    // Quando dentro da página for encontrada a classe 'perguntas', será feito a busca no dom
     if (page === 'perguntas') {
 
         quizzTitle = document.querySelector('.usuario-titulo').value
@@ -52,6 +60,9 @@ function GetUserQuizzData(page) {
         quizzQuestionsAmount = parseInt(quizzQuestionsAmount)
         quizzLevelsAmount = parseInt(quizzLevelsAmount)
 
+        //Se as informações estiverem satisfeitas, para isso usamos a função CheckInfoQuizzData
+        // vai esconder essa primeira tela e pular para a próxima (criar perguntas)
+
         if (CheckInfoQuizzData(quizzTitle, quizzUrl, quizzQuestionsAmount, quizzLevelsAmount)) {
             quizzQuestions.classList.remove('hidden')
             quizzInfo.classList.add('hidden')
@@ -60,7 +71,7 @@ function GetUserQuizzData(page) {
         }
     }
 
-
+    // Quando dentro da página for encontrada a classe 'niveis', será feito a busca no dom
     if (page === 'niveis') {
 
         if (currentPage === numberOfQuestions) {
@@ -75,6 +86,8 @@ function GetUserQuizzData(page) {
             RenderLevels(currentPage, numberOfLevels)
         }
     }
+
+    //Ultima verificação, quando finalizamos e tratamos o sucesso
     if (page === 'sucesso') {
 
         if (currentPage === numberOfLevels) {
@@ -90,6 +103,8 @@ function GetUserQuizzData(page) {
             document.querySelector(".sucesso-quizz-box").style.backgroundImage = `url('${quizzUrl}')`
         }
     }
+
+    //Acessar o quizz depois de criado
     if (page === 'acesso') {
         page3.classList.add('escondido')
         page2.classList.remove('escondido')
@@ -98,6 +113,8 @@ function GetUserQuizzData(page) {
             getOnlyQuizz(GetThisQuizzID_)
         }
     }
+
+    //Voltar para home, após criar o quizz. Este constar na tela inicial
     if (page === 'home') {
         page3.classList.add('escondido')
         quizzSuccess.classList.add('escondido')
@@ -105,7 +122,7 @@ function GetUserQuizzData(page) {
     }
 }
 
-
+//Aparecer a quantidade de perguntas de forma dinâmica conforme a escolha do usuário
 function RenderQuestions(number, page) {
 
     const QuestionsInputContainer = document.querySelector('.perguntas-quizz-input-container');
@@ -139,6 +156,8 @@ function RenderQuestions(number, page) {
     </div>`
 }
 
+//Validando as informações colocadas para criar o quizz
+
 function CheckInfoQuizzData(title, url, questions, levels) {
 
     if (title.length < 20 || title.length > 60) {
@@ -146,7 +165,7 @@ function CheckInfoQuizzData(title, url, questions, levels) {
     }
     if (!CheckURL(url)) {
         // if (url.includes('http://') || url.includes('https://') === false) {
-        return alert('A URL da imagem deve ter formato de URL (https://')
+        return alert('A URL da imagem deve ter formato de URL (https:// ou http://')
     }
     if (questions < 3 || isNaN(questions)) {
         return alert('A quantidade de perguntas deve ser no mínimo 3')
@@ -160,6 +179,89 @@ function CheckInfoQuizzData(title, url, questions, levels) {
 
 let GetFormData = []
 
+//Pega o valores colocados dentro dos input ao criar as perguntas
+function EditThisQuestion(number) {
+
+    let quizzQuestion = document.getElementById('p1').value
+    let quizzQuestionColor = document.getElementById('p2').value
+
+    let quizzRightAnswer = document.getElementById('r1').value
+    let quizzRightAnswerURL = document.getElementById('r2').value
+
+    let quizzIncorrectAnswer1 = document.getElementById('i1').value
+    let quizzIncorrectAnswer2 = document.getElementById('ii1').value
+    let quizzIncorrectAnswer3 = document.getElementById('iii1').value
+
+    let quizzIncorrectAnswerURL1 = document.getElementById('i2').value
+    let quizzIncorrectAnswerURL2 = document.getElementById('ii2').value
+    let quizzIncorrectAnswerURL3 = document.getElementById('iii2').value
+
+    //cria um objeto com as informações passadas para criar as perguntas
+    GetFormData[currentPage - 1] = {
+        quizzQuestion: quizzQuestion,
+        quizzQuestionColor: quizzQuestionColor,
+        quizzRightAnswer: quizzRightAnswer,
+        quizzRightAnswerURL: quizzRightAnswerURL,
+        quizzIncorrectAnswer1: quizzIncorrectAnswer1,
+        quizzIncorrectAnswer2: quizzIncorrectAnswer2,
+        quizzIncorrectAnswer3: quizzIncorrectAnswer3,
+        quizzIncorrectAnswerURL1: quizzIncorrectAnswerURL1,
+        quizzIncorrectAnswerURL2: quizzIncorrectAnswerURL2,
+        quizzIncorrectAnswerURL3: quizzIncorrectAnswerURL3
+    }
+    // antes de editar a proxima pagina, checa se a pagina atual esta preenchida corretamente
+    if (CheckQuestionsQuizzData(currentPage - 1, GetFormData)) {
+        currentPage = number
+        RenderQuestions(numberOfQuestions, currentPage)
+    }
+}
+
+//Validando as informações colocadas para criar o quizz
+
+function CheckQuestionsQuizzData(page, array) {
+
+    if (array[page] === null || array[page] === undefined) {
+        alert('Voce precisa preencher as informacoes de todas as perguntas antes de continuar')
+        return false
+    }
+    else {
+        if (array[page].quizzQuestion === '' || array[page].quizzQuestion.length < 20) {
+            return alert(`O texto da pergunta ${page + 1} deve ter no mínimo 20 letras, incluindo espaços`)
+        }
+        if (CheckHexa(array[page].quizzQuestionColor)) {
+            return alert(`A cor de fundo da pergunta ${page + 1} deve ser uma cor em hexadecimal comecando com #`)
+        }
+        if (array[page].quizzRightAnswer === '') {
+            return alert(`A resposta da pergunta ${page + 1} nao pode ficar em branco`)
+        }
+        if (!CheckURL(array[page].quizzRightAnswerURL)) {
+            return alert(`A imagem da resposta da pergunta ${page + 1} deve ter formato de URL`)
+        }
+
+        if (array[page].quizzIncorrectAnswer1 === '') {
+            return alert(`A pergunta ${page + 1} deve ter no mínimo uma resposta errada`)
+        }
+        if (!CheckURL(array[page].quizzIncorrectAnswerURL1)) {
+            return alert(`A imagem da resposta incorreta da pergunta ${page + 1} deve ter formato de URL`)
+        }
+
+        if (array[page].quizzIncorrectAnswer2 !== "") { 
+            if (!CheckURL(array[page].quizzIncorrectAnswerURL2)) {
+                return alert(`A imagem da resposta incorreta 2 da pergunta ${page + 1} deve ter formato de URL`)
+            }
+        }
+        if(array[page].quizzIncorrectAnswer3 !== "" ) {
+            if (!CheckURL(array[page].quizzIncorrectAnswerURL3)) {
+                return alert(`A imagem da resposta incorreta 3 da pergunta ${page + 1} deve ter formato de URL`)
+            }
+        }
+    }
+    if (currentPage === numberOfQuestions) {
+        // caso o usuario esteja na ultima pagina podera prosseguir
+        ValidateUserQuizz = true
+    }
+    return true
+}
 //Função para criar um novo quizz
 
 function CreateNewQuizz(){
