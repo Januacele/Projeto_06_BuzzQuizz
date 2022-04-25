@@ -1,6 +1,6 @@
 //variveis globais
-let quizz, arrayRespostas, numPerguntas, idQuizz;
-let contadorRespostas = 0;
+let quizz, arrayRespostas, numPerguntas, idQuizz, contadorRespostas, fimDoQuizz;
+let UM_SEGUNDO = 1000;
 let API = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
 
 iniciarTela1();
@@ -23,6 +23,11 @@ function iniciarTela1(){
     //get dos quizzes na API
     let promise = axios.get(`${API}`);
     promise.then(listarQuizzes);
+    promise.catch(tratarErro);   
+}
+
+function tratarErro(){
+    alert('Não foi possível carregar a página, por favor tente novamente');
 }
 
 //listar quizzes Tela 1
@@ -42,13 +47,16 @@ function listarQuizzes(resposta){
 
 //ao clicar num quizz na Tela 1, faz o get apenas desse quizz e manda para Tela 2
 function chamarUmQuizz(id){
+    contadorRespostas = 0;
     idQuizz = id;
     let promise = axios.get(`${API}/${id}`);
     promise.then(carregarQuizz);
+    promise.catch(tratarErro);
 }
 
 //carregar Tela 2 (página do quizz)
 function carregarQuizz(dadosAPI){
+    fimDoQuizz = 0;
     quizz = dadosAPI.data;
     let tela2 = document.querySelector(".Tela1");    
     tela2.innerHTML = `<div class="Tela2">
@@ -57,15 +65,19 @@ function carregarQuizz(dadosAPI){
                         </header>
                         <div class="titulo"></div>
                         <main></main>`;
+    
+    subirTela = document.querySelector('header');
+    subirTela.scrollIntoView();
 
     let cabecalho = document.querySelector(".titulo");
     let pergunta = document.querySelector("main");
-    console.log(quizz);
     numPerguntas = quizz.questions.length;
 
     //titulo e imagem do quizz
-    cabecalho.innerHTML = `<img src="${quizz.image}" />
-                           <span>${quizz.title}</span>`
+    cabecalho.innerHTML = `<div class="imagemQuizz" style="background-image: 
+                            linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url(${quizz.image})">
+                            <span>${quizz.title}</span>
+                            </div>`
 
     //boxes de perguntas
     for(let i = 0; i < numPerguntas; i++){
@@ -103,51 +115,65 @@ function aleatorio(){
 
 //comportamento ao clicar na resposta
 function selecionaResposta(elemento){
-    contadorRespostas++;
-    elemento.classList.add("selecionada");
     let imagensOpacas = elemento.parentNode.querySelectorAll('.resposta');
     let corResposta = elemento.parentNode.querySelectorAll('span');
 
-    for(let i = 0; i < imagensOpacas.length; i++){
-        imagensOpacas[i].classList.add("opaca");
-        corResposta[i].classList.add("cor");
+    respostaSelecionada = elemento.parentNode.querySelectorAll('.selecionada');
+
+    if(respostaSelecionada.length === 0){
+
+        elemento.classList.add("selecionada");
+        contadorRespostas++;
+
+        for(let i = 0; i < imagensOpacas.length; i++){
+            imagensOpacas[i].classList.add("opaca");
+            corResposta[i].classList.add("cor");
+        }
     }
 
-    console.log(contadorRespostas)
+    setTimeout(rolarPergunta, 2*UM_SEGUNDO);
 
-    if(contadorRespostas === numPerguntas){
-        mostrarNivel();
-        console.log("chamou nivel")
+    if(contadorRespostas === numPerguntas && fimDoQuizz === 0){
+        setTimeout(mostrarNivel, 2*UM_SEGUNDO);
+    }
+}
+
+//rola a tela para próxima pergunta após 2s
+function rolarPergunta(){
+    let pergunta = document.querySelectorAll('.pergunta');
+
+    if(contadorRespostas < pergunta.length){
+        pergunta[contadorRespostas].scrollIntoView({ block: 'start',  behavior: 'smooth' });
     }
 }
 
 //calcula % acerto e mostra o nível
 function mostrarNivel(){
-    console.log(quizz);
+    fimDoQuizz++;
     let numRespostasCertas = document.querySelectorAll(".certa.selecionada").length;
     let acertosPercentual = Math.round((numRespostasCertas / numPerguntas) * 100);
     let niveis = quizz.levels;
     let indiceNivel;
     console.log(niveis);
     let caixaNivel = document.querySelector("main");
-
-    /*for(let i = 0; i < niveis.length; i++){
-        if(acertosPercentual <= niveis[i].minValue){
-            indiceNivel = i;
-            console.log(indiceNivel)
-        } else {
+    
+    for(let i = 0; i < niveis.length; i++){
+        if(acertosPercentual >= niveis[i].minValue){
             indiceNivel = i;
         }
-    }*/
+    }
 
-    console.log(indiceNivel)
     caixaNivel.innerHTML += `<div class="nivel">
-                                    <div class="tituloNivel">${niveis[0].title}</div>
+                                    <div class="tituloNivel">
+                                        ${acertosPercentual}% de acerto: ${niveis[indiceNivel].title}</div>
                                     <div class=resumoNivel>
-                                        <img src="${niveis[0].image}" />
-                                        <div>${niveis[0].text}</div>
+                                        <img src="${niveis[indiceNivel].image}" />
+                                        <div>${niveis[indiceNivel].text}</div>
                                     </div>
                                </div>
                                <span class="reiniciar" onclick="chamarUmQuizz(idQuizz)">Reiniciar Quizz</span>
                                <span class="voltarTela1" onclick="iniciarTela1()">Voltar para home</span>`
+
+    aparecerNivel = document.querySelector(".reiniciar");
+    aparecerNivel.scrollIntoView({ block: 'nearest',  behavior: 'smooth' });
 }
