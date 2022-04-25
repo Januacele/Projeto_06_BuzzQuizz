@@ -347,85 +347,44 @@ function CheckLevelQuizzData(page, array) {
 }
 
 
-//Função para criar um novo quizz
+// Postar requisicao de criar um novo quizz na API
+function GenerateUserRequestPost(questions, levels) {
 
-function CreateNewQuizz(){
-    
-    newQuizz.title = quizzTitle;
-    newQuizz.image = quizzUrl;
-
-    //Iteração para criar novas perguntas a partir do número passado pelo usuário 
-    for(let i = 0; i<numberOfQuestions;i++){
-        NewQuestion.push(createNewQuestion(i));
+    let arrayQuestions = []
+    let arrayLevels = []
+    let userQuizzOBJ = {}
+    userQuizzOBJ.title = quizzTitle;
+    userQuizzOBJ.image = quizzUrl;
+    for (let i = 0; i < questions; i++) {
+        arrayQuestions.push(createNewQuestion(i));
+    }
+    for (let i = 0; i < levels; i++) {
+        arrayLevels.push(createNewLevel(i));
     }
 
-    //Iteração para criar novos níveis a partir do número passado pelo usuário 
-    for(let i =0; i< numberOfLevels;i++ ){
-        NewLevel.push(createNewLevel(i));
-    }
-    newQuizz.questions = NewQuestion;
-    newQuizz.levels = NewLevel;
-    console.log(newQuizz);
-    postQuizz(newQuizz);
-    
- }
+    userQuizzOBJ.levels = arrayLevels
+    userQuizzOBJ.questions = arrayQuestions
+    console.log(userQuizzOBJ);
 
- //Criando novas perguntas conforme decisão do usuário
- function createNewQuestion(index){
-     //Objeto com os dados do que foi preenchido nas questões. Responde de forma dinâmica 
-    const newDataQuestion= {
-        "title":GetFormData[index].quizzQuestion,
-        "color":GetFormData[index].quizzQuestionColor,
-        "answers": [
-            {
-                "text":GetFormData[index].quizzRightAnswer,
-                "image":GetFormData[index].quizzRightAnswerURL,
-                "isCorrectAnswer": true
-            },
-            {
-                "text":GetFormData[index].quizzIncorrectAnswer1,
-                "image":GetFormData[index].quizzIncorrectAnswerURL1,
-                "isCorrectAnswer": false
-            }
-        ]
-    }
-    if(GetFormData[index].quizzIncorrectAnswer2 != ""){
-    newDataQuestion.answers.push({
-        "text":GetFormData[index].quizzIncorrectAnswer2,
-        "image":GetFormData[index].quizzIncorrectAnswerURL2,
-        "isCorrectAnswer": false
+    let requestUserQuizz = axios.post('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes', userQuizzOBJ)
+
+    requestUserQuizz.then((response) => {
+        TOTAL_USER_QUIZZ++
+        window.localStorage.setItem(`UserQuizzID${TOTAL_USER_QUIZZ}`, `${response.data.id}`)
+        window.localStorage.setItem('TOTAL_USER_QUIZZ', `${TOTAL_USER_QUIZZ}`)
+        console.log(`voce criou o quizz id ${response.data.id} com extremo sucesso`)
+
+        // obtendo o ID do Quizz criado pra poder acessa-lo
+        GetThisQuizzID_ = response.data.id
+        RenderUserQuizz(response.data.id)
+        
+        document.querySelector(".sucesso-quizz-box").setAttribute('onclick', `getOnlyQuizz(${response.data.id})`)
+        console.log('opa')
     })
-    }
-    if(GetFormData[index].quizzIncorrectAnswer3 != ""){
-        newDataQuestion.answers.push({
-            "text":GetFormData[index].quizzIncorrectAnswer3,
-            "image":GetFormData[index].quizzIncorrectAnswerURL3,
-            "isCorrectAnswer": false
-        })
-    }
-    return newDataQuestion;
-} 
 
-//Criando um novo nível conforme decisão do usuário
-
-function createNewLevel(index){
-    const newDataLevel = {
-        "title": GetFormLevel[index].quizzLevel,
-        "minValue":GetFormLevel[index].LevelPorcent,
-        "image":GetFormLevel[index].LevelURL,
-        "text":GetFormLevel[index].LevelDescription
-    }
-    return newDataLevel;
-}
-
-//Fazendo post na api dos dados inseridos pelo usuário
-function postQuizz(quizz) {
-    const promise = axios.post('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes', quizz)
-    promise.then((response) => {
-        console.warn(response);
-        saveDataQuizz(response);
-    })
-    promise.catch((error) => {
-        console.error(error)
+    requestUserQuizz.catch((error) => {
+        console.log('falha na criacao do quizz')
+        console.log(error)
     })
 }
+
