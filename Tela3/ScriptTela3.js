@@ -105,6 +105,40 @@ function GetUserQuizzData(page) {
     }
 }
 
+
+function RenderQuestions(number, page) {
+
+    const QuestionsInputContainer = document.querySelector('.perguntas-quizz-input-container');
+    QuestionsInputContainer.innerHTML = `
+        <div class="quizz-questions-text"><h1>Pergunta ${page}</h1></div>
+        <input type="text" id = "p1" placeholder="Texto da pergunta" data-identifier="question">
+        <input type="text" id = "p2" placeholder="Cor de fundo da pergunta" data-identifier="question">
+        <div class="quizz-questions-text"><h1>Resposta correta</h1></div>
+        <input type="text" id = "r1" placeholder="Resposta correta" data-identifier="question">
+        <input type="text" id = "r2" placeholder="URL da imagem" data-identifier="question">
+        <div class="quizz-questions-text"><h1>Respostas incorretas</h1></div>
+        <input type="text" id = "i1" placeholder="Resposta incorreta 1" data-identifier="question">
+        <input type="text" id = "i2" placeholder="URL da imagem 1" data-identifier="question">
+        <input type="text" id = "ii1" placeholder="Resposta incorreta 2" data-identifier="question">
+        <input type="text" id = "ii2" placeholder="URL da imagem 2" data-identifier="question">
+        <input type="text" id = "iii1" placeholder="Resposta incorreta 3" data-identifier="question">
+        <input type="text" id = "iii2" placeholder="URL da imagem 3" data-identifier="question">`
+
+     for (let i = 1; i <= number; i++) {
+        if (page !== i) {
+            QuestionsInputContainer.innerHTML += `
+            <div class="quizz-question-box" id = '${i}'>
+                <div class="text"> <h1>Pergunta ${i}</h1></div>
+                <div class="icon" onclick="EditThisQuestion(${i})" data-identifier="expand"><ion-icon name="create-outline"></ion-icon></div>
+            </div>`
+        }
+    }
+    QuestionsInputContainer.innerHTML += `
+    <div class="quizz-question-final-btn">
+        <button onclick="GetUserQuizzData('levels')">Prosseguir pra criar níveis</button>
+    </div>`
+}
+
 //Função para criar um novo quizz
 
 function CreateNewQuizz(){
