@@ -71,7 +71,6 @@ function carregarQuizz(dadosAPI){
 
     let cabecalho = document.querySelector(".titulo");
     let pergunta = document.querySelector("main");
-    console.log(quizz);
     numPerguntas = quizz.questions.length;
 
     //titulo e imagem do quizz
@@ -139,17 +138,17 @@ function selecionaResposta(elemento){
     }
 }
 
+//rola a tela para próxima pergunta após 2s
 function rolarPergunta(){
     let pergunta = document.querySelectorAll('.pergunta');
 
-    if(contadorRespostas <= pergunta.length){
-        pergunta[contadorRespostas].scrollIntoView({ block: 'end',  behavior: 'smooth' });
+    if(contadorRespostas < pergunta.length){
+        pergunta[contadorRespostas].scrollIntoView({ block: 'start',  behavior: 'smooth' });
     }
 }
 
 //calcula % acerto e mostra o nível
 function mostrarNivel(){
-    console.log(quizz);
     fimDoQuizz++;
     let numRespostasCertas = document.querySelectorAll(".certa.selecionada").length;
     let acertosPercentual = Math.round((numRespostasCertas / numPerguntas) * 100);
@@ -157,21 +156,19 @@ function mostrarNivel(){
     let indiceNivel;
     console.log(niveis);
     let caixaNivel = document.querySelector("main");
-
-    /*for(let i = 0; i < niveis.length; i++){
-        if(acertosPercentual <= niveis[i].minValue){
-            indiceNivel = i;
-            console.log(indiceNivel)
-        } else {
+    
+    for(let i = 0; i < niveis.length; i++){
+        if(acertosPercentual >= niveis[i].minValue){
             indiceNivel = i;
         }
-    }*/
+    }
 
     caixaNivel.innerHTML += `<div class="nivel">
-                                    <div class="tituloNivel">${niveis[0].title}</div>
+                                    <div class="tituloNivel">
+                                        ${acertosPercentual}% de acerto: ${niveis[indiceNivel].title}</div>
                                     <div class=resumoNivel>
-                                        <img src="${niveis[0].image}" />
-                                        <div>${niveis[0].text}</div>
+                                        <img src="${niveis[indiceNivel].image}" />
+                                        <div>${niveis[indiceNivel].text}</div>
                                     </div>
                                </div>
                                <span class="reiniciar" onclick="chamarUmQuizz(idQuizz)">Reiniciar Quizz</span>
