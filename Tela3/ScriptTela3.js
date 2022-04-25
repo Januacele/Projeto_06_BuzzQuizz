@@ -139,6 +139,27 @@ function RenderQuestions(number, page) {
     </div>`
 }
 
+function CheckInfoQuizzData(title, url, questions, levels) {
+
+    if (title.length < 20 || title.length > 60) {
+        return alert('O título do quizz deve ter no mínimo 20 e no máximo 65 letras, incluindo espaços')
+    }
+    if (!CheckURL(url)) {
+        // if (url.includes('http://') || url.includes('https://') === false) {
+        return alert('A URL da imagem deve ter formato de URL (https://')
+    }
+    if (questions < 3 || isNaN(questions)) {
+        return alert('A quantidade de perguntas deve ser no mínimo 3')
+    }
+    if (levels < 2 || isNaN(levels)) {
+        return alert('A quantidade de niveis deve ser no mínimo 2')
+    }
+    numberOfLevels = levels
+    return true
+}
+
+let GetFormData = []
+
 //Função para criar um novo quizz
 
 function CreateNewQuizz(){
