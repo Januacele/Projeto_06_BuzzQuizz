@@ -45,13 +45,24 @@ main {
 .criarQuizz {
     height: 40px;
     width: 150px;
-    color: #EC362D;
     border: 2px dashed #EC362D;
     border-radius: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+.criarQuizz button{
+    margin-top: 5px;
+    background: #FAFAFA;
+    border: none;
+    font-family: Roboto;
+    font-size: 21px;
+    line-height: 25px;
+    color: #EC362D;
+}
+
+
 
 main span {
     font-family: 'Roboto';

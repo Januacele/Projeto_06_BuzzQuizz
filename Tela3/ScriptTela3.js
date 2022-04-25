@@ -1,167 +1,109 @@
-/*const API = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
 
-const buttom1 = document.querySelector(".Comeco");
-const buttom2 = document.querySelector(".Prosseguir-Niveis");
-const buttom3 = document.querySelector(".Finalizar-Quizz");
-const buttomAcessarQuizz = document.querySelector(".Acessar-Quizz");
-const buttomHome = document.querySelector(".voltarHome");
-const meuTitulo = "";
-
-//Funções para adicinar e remover o display: none, que está dentro da classe escondido
-
-function DisplayTela31 (){
-    const Tela31 = document.querySelector(".Tela31").classList.remove("escondido");
-}
-
-function HiddenTela31 (){
-    const Tela31 = document.querySelector(".Tela31").classList.add("escondido");
-}
-
-function DisplayTela32 (){
-    const Tela32 = document.querySelector(".Tela32").classList.remove("escondido");
-}
-function HiddenTela32 (){
-    const Tela32 = document.querySelector(".Tela32").classList.add("escondido");
-}
-
-function DisplayTela33 (){
-    const Tela33 = document.querySelector(".Tela33").classList.remove("escondido");
-}
-function HiddenTela33 (){
-    const Tela33 = document.querySelector(".Tela33").classList.add("escondido");
-}
-
-function DisplayTela34 (){
-    const Tela34 = document.querySelector(".Tela34").classList.remove("escondido");
-}
-function HiddenTela34 (){
-    const Tela34 = document.querySelector(".Tela34").classList.add("escondido");
-}
-
-// Função para trocar entre as subtelas da Tela 3 ao clicar nos botões
-function trocarTelas (){
-    buttom1.addEventListener('click', DisplayTela32);
-    buttom1.addEventListener('click', HiddenTela31);
-    buttom2.addEventListener('click', DisplayTela33);
-    buttom2.addEventListener('click', HiddenTela32);
-    buttom3.addEventListener('click', DisplayTela34);
-    buttom3.addEventListener('click', HiddenTela33);
-    buttomAcessarQuizz.addEventListener('click', HiddenTela34);
-}
-
-//Validações para Criação do Quizz - Começo
-function ValidarTela3Comeco(){
-    const meuTitulo = document.querySelector(".titulo").value;
-    const minhaUrlImg = document.querySelectorAll(".urlImagem").value;
-    const minhaQtdPerguntas = document.querySelector(".QtsPerguntas").value;
-    const meusNiveis = document.querySelector(".QtdNiveis").value;
-    //console.log(meuTitulo);
-
-    //Título do quizz: deve ter no mínimo 20 e no máximo 65 caracteres
-
-    if (meuTitulo.length < 20 || meuTitulo.length > 65) { 
-        buttom1.removeEventListener('click', DisplayTela32);
-        buttom1.addEventListener('click', DisplayTela31);
-        alert("O título deve conter entre 20 e 65 letras, incluindo os espaços");
-        
-    } else {
-        buttom1.addEventListener('click', DisplayTela32);
-    }
-
-    //Imagem deve ser no formato URL 
-
-    if (minhaUrlImg.includes("https://") === false) { 
-        
-        buttom1.removeEventListener('click', DisplayTela32);
-        buttom1.addEventListener('click', DisplayTela31);
-        alert("A imagem deve ser um link (Formato URL)");
-        
-    } else {
-        buttom1.addEventListener('click', DisplayTela32);
-    }
-
-    //Deve conter no mínimo 3 perguntas 
-    
-    if (Number(minhaQtdPerguntas) <= 2) { 
-        buttom1.removeEventListener('click', DisplayTela32);
-        buttom1.addEventListener('click', DisplayTela31);
-        alert("Deve conter no mínimo 3 perguntas");
-        
-    } else {
-        buttom1.addEventListener('click', DisplayTela32);
-    }
-
-    //Deve conter no mínimo 2 níveis 
-    
-    if (Number(meusNiveis) <= 1) { 
-        buttom1.removeEventListener('click', DisplayTela32);
-        buttom1.addEventListener('click', DisplayTela31);
-        alert("Deve conter no mínimo 2 níveis");
-        
-    } else {
-        buttom1.addEventListener('click', DisplayTela32);
-    }
-    ValidarTela3Perguntas(); //janu, pra testar chamei a função aqui! mas nao sei se é a melhor forma
-}
-
-function ValidarTela3Perguntas (){
-    let minhaQtdPerguntas = document.querySelector(".QtsPerguntas").value;
-    let addPerguntas = document.querySelector(".adicionarPerguntas");
-    for (let i=0 ; i< minhaQtdPerguntas; i++){
-        addPerguntas.innerHTML += `
-        <ul class="Adicionar Segunda-Pergunta">
-                    <div class="criarPergunta">
-                        <h3> Pergunta ${i} </h3>
-                        <img class="botaoCriarPergunta" src="/Imagens/Vector.svg" alt="Criar perguntas">
-                    </div>
-                </ul>`
-               
-    }
-
-    //Texto da pergunta deve ter no mínimo 20 caracteres
-
-    const minhaPergunta = document.querySelectorAll(".textoPergunta").value;
-    const minhaCor = document.querySelectorAll(".cor-fundo").value;
-
-    if (minhaPergunta.length < 20) { 
-        buttom2.removeEventListener('click', DisplayTela33);
-        buttom2.addEventListener('click', DisplayTela32);
-        alert("A pergunta deve conter no mínimo 20 letras, incluindo os espaços");
-            
-    } else {
-        buttom2.addEventListener('click', DisplayTela33);
-    }
-
-    //Cor de fundo no formato hexadecimal
-    
-    if (minhaCor.includes("#") === false && minhaCor.length < 6) { 
-        
-        buttom2.removeEventListener('click', DisplayTela33);
-        buttom2.addEventListener('click', DisplayTela32);
-        alert("A cor deve ser no formato hexadecimal");
-        
-    } else {
-        buttom2.addEventListener('click', DisplayTela33);
-    }
-
-    //Imagem deve ser no formato URL 
-
-    if (minhaUrlImg.includes("https://") === false) { 
-        
-        buttom2.removeEventListener('click', DisplayTela33);
-        buttom2.addEventListener('click', DisplayTela32);
-        alert("A imagem deve ser um link (Formato URL)");
-        
-    } else {
-        buttom2.addEventListener('click', DisplayTela33);
-    }
-
-}*/
+let dataId=[];
 
 let newQuizz={};
 let NewQuestion = [];
 let NewLevel = [];
 
+
+let currentPage = 1
+let numberOfQuestions = 0
+let ValidateUserQuizz = false
+let numberOfLevels = 0
+let GetThisQuizzID_ = undefined
+let quizzUrl;
+let quizzTitle;
+function GetUserQuizzData(page) {
+
+    const page1 = document.querySelector('.Tela1');
+    const page2 = document.querySelector('.Tela2');
+    const page3 = document.querySelector('.Tela3');
+    const quizzInfo = document.querySelector('.informacao-quizz');
+    const quizzQuestions = document.querySelector('.perguntas-quizz');
+    const quizzLevels = document.querySelector('.niveis-quizz');
+    const quizzSuccess = document.querySelector('.sucesso-quizz');
+
+   
+    if (page === 'info') {
+
+        quizzTitle = document.querySelector('.usuario-titulo').value
+        quizzUrl = document.querySelector('.usuario-url').value
+        let quizzQuestionsAmount = document.querySelector('.usuario-qtd-perguntas').value
+        let quizzLevelsAmount = document.querySelector('.usuario-niveis').value
+
+        quizzQuestionsAmount = parseInt(quizzQuestionsAmount)
+        quizzLevelsAmount = parseInt(quizzLevelsAmount)
+
+        if (CheckInfoQuizzData(quizzTitle, quizzUrl, quizzQuestionsAmount, quizzLevelsAmount)) {
+            quizzQuestions.classList.remove('escondido')
+            quizzInfo.classList.add('escondido')
+            numberOfQuestions = quizzQuestionsAmount
+            RenderQuestions(quizzQuestionsAmount, currentPage)
+        }
+    }
+
+    if (page === 'perguntas') {
+
+        quizzTitle = document.querySelector('.usuario-titulo').value
+        quizzUrl = document.querySelector('.usuario-url').value
+        let quizzQuestionsAmount = document.querySelector('.usuario-qtd-perguntas').value
+        let quizzLevelsAmount = document.querySelector('.usuario-niveis').value
+
+        quizzQuestionsAmount = parseInt(quizzQuestionsAmount)
+        quizzLevelsAmount = parseInt(quizzLevelsAmount)
+
+        if (CheckInfoQuizzData(quizzTitle, quizzUrl, quizzQuestionsAmount, quizzLevelsAmount)) {
+            quizzQuestions.classList.remove('hidden')
+            quizzInfo.classList.add('hidden')
+            numberOfQuestions = quizzQuestionsAmount
+            RenderQuestions(quizzQuestionsAmount, currentPage)
+        }
+    }
+
+
+    if (page === 'niveis') {
+
+        if (currentPage === numberOfQuestions) {
+            EditThisQuestion(numberOfQuestions)
+            // caso o usuario esteja na ultima pagina de perguntas e clique no botao
+            // entao verificamos se ele pode prosseguir
+        }
+        if (ValidateUserQuizz) {
+            quizzQuestions.classList.add('escondido')
+            quizzLevels.classList.remove('escondido')
+            currentPage = 1
+            RenderLevels(currentPage, numberOfLevels)
+        }
+    }
+    if (page === 'sucesso') {
+
+        if (currentPage === numberOfLevels) {
+            EditThisLevel(numberOfLevels)
+        }
+        if (ValidateUserQuizzLevel) {
+            quizzLevels.classList.add('escondido')
+            quizzSuccess.classList.remove('escondido')
+
+            // ao criar um quizz, o armazenamento local do usuario tera essa informacao
+            window.localStorage.setItem('UserCreateQuizz', 'true');
+            GenerateUserRequestPost(numberOfQuestions, numberOfLevels)
+            document.querySelector(".sucesso-quizz-box").style.backgroundImage = `url('${quizzUrl}')`
+        }
+    }
+    if (page === 'acesso') {
+        page3.classList.add('escondido')
+        page2.classList.remove('escondido')
+
+        if (GetThisQuizzID_ != undefined) {
+            getOnlyQuizz(GetThisQuizzID_)
+        }
+    }
+    if (page === 'home') {
+        page3.classList.add('escondido')
+        quizzSuccess.classList.add('escondido')
+        page1.classList.remove('escondido')
+    }
+}
 
 //Função para criar um novo quizz
 
@@ -186,7 +128,9 @@ function CreateNewQuizz(){
     
  }
 
+ //Criando novas perguntas conforme decisão do usuário
  function createNewQuestion(index){
+     //Objeto com os dados do que foi preenchido nas questões. Responde de forma dinâmica 
     const newDataQuestion= {
         "title":GetFormData[index].quizzQuestion,
         "color":GetFormData[index].quizzQuestionColor,
@@ -206,7 +150,7 @@ function CreateNewQuizz(){
     if(GetFormData[index].quizzIncorrectAnswer2 != ""){
     newDataQuestion.answers.push({
         "text":GetFormData[index].quizzIncorrectAnswer2,
-        "image":GetFormData[index].quizzIncorrectAnswerURL3,
+        "image":GetFormData[index].quizzIncorrectAnswerURL2,
         "isCorrectAnswer": false
     })
     }
@@ -219,3 +163,27 @@ function CreateNewQuizz(){
     }
     return newDataQuestion;
 } 
+
+//Criando um novo nível conforme decisão do usuário
+
+function createNewLevel(index){
+    const newDataLevel = {
+        "title": GetFormLevel[index].quizzLevel,
+        "minValue":GetFormLevel[index].LevelPorcent,
+        "image":GetFormLevel[index].LevelURL,
+        "text":GetFormLevel[index].LevelDescription
+    }
+    return newDataLevel;
+}
+
+//Fazendo post na api dos dados inseridos pelo usuário
+function postQuizz(quizz) {
+    const promise = axios.post('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes', quizz)
+    promise.then((response) => {
+        console.warn(response);
+        saveDataQuizz(response);
+    })
+    promise.catch((error) => {
+        console.error(error)
+    })
+}
