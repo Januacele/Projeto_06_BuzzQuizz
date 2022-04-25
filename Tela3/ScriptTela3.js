@@ -172,7 +172,7 @@ function CreateNewQuizz(){
 
     //Iteração para criar novas perguntas a partir do número passado pelo usuário 
     for(let i = 0; i<numberOfQuestions;i++){
-        //NewQuestion.push(createNewQuestion(i));
+        NewQuestion.push(createNewQuestion(i));
     }
 
     //Iteração para criar novos níveis a partir do número passado pelo usuário 
@@ -182,4 +182,40 @@ function CreateNewQuizz(){
     newQuizz.questions = NewQuestion;
     newQuizz.levels = NewLevel;
     console.log(newQuizz);
+    postQuizz(newQuizz);
     
+ }
+
+ function createNewQuestion(index){
+    const newDataQuestion= {
+        "title":GetFormData[index].quizzQuestion,
+        "color":GetFormData[index].quizzQuestionColor,
+        "answers": [
+            {
+                "text":GetFormData[index].quizzRightAnswer,
+                "image":GetFormData[index].quizzRightAnswerURL,
+                "isCorrectAnswer": true
+            },
+            {
+                "text":GetFormData[index].quizzIncorrectAnswer1,
+                "image":GetFormData[index].quizzIncorrectAnswerURL1,
+                "isCorrectAnswer": false
+            }
+        ]
+    }
+    if(GetFormData[index].quizzIncorrectAnswer2 != ""){
+    newDataQuestion.answers.push({
+        "text":GetFormData[index].quizzIncorrectAnswer2,
+        "image":GetFormData[index].quizzIncorrectAnswerURL3,
+        "isCorrectAnswer": false
+    })
+    }
+    if(GetFormData[index].quizzIncorrectAnswer3 != ""){
+        newDataQuestion.answers.push({
+            "text":GetFormData[index].quizzIncorrectAnswer3,
+            "image":GetFormData[index].quizzIncorrectAnswerURL3,
+            "isCorrectAnswer": false
+        })
+    }
+    return newDataQuestion;
+} 
