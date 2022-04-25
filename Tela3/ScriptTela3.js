@@ -158,3 +158,28 @@ function ValidarTela3Perguntas (){
 
 }*/
 
+let newQuizz={};
+let NewQuestion = [];
+let NewLevel = [];
+
+
+//Função para criar um novo quizz
+
+function CreateNewQuizz(){
+    
+    newQuizz.title = quizzTitle;
+    newQuizz.image = quizzUrl;
+
+    //Iteração para criar novas perguntas a partir do número passado pelo usuário 
+    for(let i = 0; i<numberOfQuestions;i++){
+        //NewQuestion.push(createNewQuestion(i));
+    }
+
+    //Iteração para criar novos níveis a partir do número passado pelo usuário 
+    for(let i =0; i< numberOfLevels;i++ ){
+        NewLevel.push(createNewLevel(i));
+    }
+    newQuizz.questions = NewQuestion;
+    newQuizz.levels = NewLevel;
+    console.log(newQuizz);
+    
