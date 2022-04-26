@@ -14,7 +14,7 @@ function iniciarTela1(){
                         <main class="primeiraTela">
                             <div class="novoQuizz">
                                 <div class="quizzesUser">Você não criou nenhum quizz ainda :(</div>
-                                <div class="criarQuizz"><button onclick="GetUserQuizzData('info')"data-identifier="create-quizz">Criar Quizz</div>
+                                <div class="criarQuizz"><button onclick="GetUserQuizzData()"data-identifier="create-quizz">Criar Quizz</div>
                             </div>
                             <span style="width: 80%; font-weight: 700">Todos os Quizzes</span>
                             <div class="quizzes"></div>
