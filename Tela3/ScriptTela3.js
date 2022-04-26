@@ -12,71 +12,47 @@ let GetThisQuizzID_ = undefined
 let quizzUrl;
 let quizzTitle;
 
+let page1, page2, page3, quizzInfo, quizzQuestions, quizzLevels, quizzSuccess;
 
 
+function changeToQuestions(){
+page1 = document.querySelector('.Tela1');
+page1.innerHTML=`
+<section class="perguntas-quizz escondido">
 
-function GetUserQuizzData(page) {
+    <div class="perguntas-quizz-titulo">
+        <h2> Crie suas perguntas </h2>
+    </div>
 
-    const page1 = document.querySelector('.Tela1');
-    const page2 = document.querySelector('.Tela2');
-    const page3 = document.querySelector('.Tela3');
-    const quizzInfo = document.querySelector('.info-quizz');
-    const quizzQuestions = document.querySelector('.perguntas-quizz');
-    const quizzLevels = document.querySelector('.niveis-quizz');
-    const quizzSuccess = document.querySelector('.sucesso-quizz');
+    <div class="perguntas-quizz-input-container"> 
 
-    page1.innerHTML = "";
-    page1.innerHTML = `<section class="Tela3">
-    <!-- esconder aqui -->
-    <section class="info-quizz">
-        <!-- esconder aqui -->
+    </div>
 
-        <div class="info-quizz-titulo">
-            <h2> Comece pelo começo </h2>
-        </div>
-        
-        <div class="info-quizz-input-container">
-            <input class="usuario-titulo" type="text" placeholder="Título do seu quizz" />
-            <input class="usuario-url" type="text" placeholder="URL da imagem do seu quizz" />
-            <input class="usuario-qtd-perguntas" type="text" placeholder="Quantidade de perguntas do quizz" />
-            <input class="usuario-niveis" type="text" placeholder="Quantidade de níveis do quizz" />
+</section>`
+}
 
-            <div class="info-quizz-button-box">
-                <button onclick="GetUserQuizzData('perguntas')">
-                    Prosseguir para criar perguntas
-                </button>
-            </div>
+function changeToLevels(){
 
-        </div>
-    </section>
-
-
-    <section class="perguntas-quizz escondido">
-
-        <div class="perguntas-quizz-titulo">
-            <h2> Crie suas perguntas </h2>
-        </div>
-
-        <div class="perguntas-quizz-input-container"> 
-
-        </div>
-
-    </section>
-
-
+    page1 = document.querySelector('.Tela1');
+    page1.innerHTML=`
     <section class="niveis-quizz escondido">
 
-        <div class="niveis-quizz-titulo">
-            <h2> Agora, decida os níveis! </h2>
-        </div>
+    <div class="niveis-quizz-titulo">
+        <h2> Agora, decida os níveis! </h2>
+    </div>
 
-        <div class="niveis-quizz-input-container">
+    <div class="niveis-quizz-input-container">
 
-        </div>
+    </div>
 
-    </section>
+</section>`
 
+}
 
+function changeToSuccess(){
+
+    page1 = document.querySelector('.Tela1');
+    page1.innerHTML=`
     <section class="sucesso-quizz escondido">
          
         <div class="sucesso-quizz-titulo">
@@ -92,26 +68,66 @@ function GetUserQuizzData(page) {
             </div>
 
             <div class="sucesso-quizz-btn">
-                <button onclick="getUserQuizzDate('home')"> Voltar </button>
+                <button onclick="iniciarTela1()"> Voltar </button>
             </div> 
         </div>
 
-    </section>
-
 </section>`
+}
+
+function GetUserQuizzData(page) {
+
+    page1 = document.querySelector('.Tela1');
+    page2 = document.querySelector('.Tela2');
+    page3 = document.querySelector('.Tela3');
+    quizzInfo = document.querySelector('.info-quizz');
+    quizzQuestions = document.querySelector('.perguntas-quizz');
+    quizzLevels = document.querySelector('.niveis-quizz');
+    quizzSuccess = document.querySelector('.sucesso-quizz');
+
+    page1.innerHTML = "";
+    page1.innerHTML = `
+
+    <header>
+    BuzzQuizz
+    </header>
+    <section class="Tela3">
+
+        <section class="info-quizz">
+
+            <div class="info-quizz-titulo">
+                <h2> Comece pelo começo </h2>
+            </div>
+            
+            <div class="info-quizz-input-container">
+                <input class="usuario-titulo" type="text" placeholder="Título do seu quizz" />
+                <input class="usuario-url" type="text" placeholder="URL da imagem do seu quizz" />
+                <input class="usuario-qtd-perguntas" type="text" placeholder="Quantidade de perguntas do quizz" />
+                <input class="usuario-niveis" type="text" placeholder="Quantidade de níveis do quizz" />
+
+                <div class="info-quizz-button-box">
+                    <button onclick="changeToQuestions(),GetUserQuizzData('perguntas')">
+                        Prosseguir para criar perguntas
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+    </section>`
    
 // Quando dentro da página for encontrada a classe 'info', click do botao para criar quizz
     if (page === 'info') {
 
         //Abre na tela 3.1 e procura pelas primeiras informações para criar o quizz
-        quizzTitle = document.querySelector('.usuario-titulo').value
-        quizzUrl = document.querySelector('.usuario-url').value
-        let quizzQuestionsAmount = document.querySelector('.usuario-qtd-perguntas').value
-        let quizzLevelsAmount = document.querySelector('.usuario-niveis').value
+        let quizzTitle = document.querySelector('.usuario-titulo').value;
+        let quizzUrl = document.querySelector('.usuario-url').value;
+        let quizzQuestionsAmount = document.querySelector('.usuario-qtd-perguntas').value;
+        let quizzLevelsAmount = document.querySelector('.usuario-niveis').value;
 
         //Passa os valores de string para número
-        quizzQuestionsAmount = parseInt(quizzQuestionsAmount)
-        quizzLevelsAmount = parseInt(quizzLevelsAmount)
+        quizzQuestionsAmount = parseInt(quizzQuestionsAmount);
+        quizzLevelsAmount = parseInt(quizzLevelsAmount);
 
         //Se as informações estiverem satisfeitas, para isso usamos a função CheckInfoQuizzData
         // vai esconder essa primeira tela e pular para a próxima (criar perguntas)
@@ -119,32 +135,32 @@ function GetUserQuizzData(page) {
         if (CheckInfoQuizzData(quizzTitle, quizzUrl, quizzQuestionsAmount, quizzLevelsAmount)) {
 
             //Já encontrou no dom o local onde estão as perguntas do quizz e armazenou numa constante de uso geral
-            quizzQuestions.classList.remove('escondido')
-            quizzInfo.classList.add('escondido')
-            numberOfQuestions = quizzQuestionsAmount
-            RenderQuestions(quizzQuestionsAmount, currentPage)
+            /*quizzQuestions.classList.remove('escondido')
+            quizzInfo.classList.add('escondido') APAGAR*/
+            numberOfQuestions = quizzQuestionsAmount;
+            RenderQuestions(quizzQuestionsAmount, currentPage);
         }
     }
 
     // Quando dentro da página for encontrada a classe 'perguntas', será feito a busca no dom
     if (page === 'perguntas') {
 
-        quizzTitle = document.querySelector('.usuario-titulo').value
-        quizzUrl = document.querySelector('.usuario-url').value
-        let quizzQuestionsAmount = document.querySelector('.usuario-qtd-perguntas').value
-        let quizzLevelsAmount = document.querySelector('.usuario-niveis').value
+        quizzTitle = document.querySelector('.usuario-titulo').value;
+        quizzUrl = document.querySelector('.usuario-url').value;
+        let quizzQuestionsAmount = document.querySelector('.usuario-qtd-perguntas').value;
+        let quizzLevelsAmount = document.querySelector('.usuario-niveis').value;
 
-        quizzQuestionsAmount = parseInt(quizzQuestionsAmount)
-        quizzLevelsAmount = parseInt(quizzLevelsAmount)
+        quizzQuestionsAmount = parseInt(quizzQuestionsAmount);
+        quizzLevelsAmount = parseInt(quizzLevelsAmount);
 
         //Se as informações estiverem satisfeitas, para isso usamos a função CheckInfoQuizzData
         // vai esconder essa primeira tela e pular para a próxima (criar perguntas)
 
         if (CheckInfoQuizzData(quizzTitle, quizzUrl, quizzQuestionsAmount, quizzLevelsAmount)) {
-            quizzQuestions.classList.remove('escondido')
-            quizzInfo.classList.add('escondido')
-            numberOfQuestions = quizzQuestionsAmount
-            RenderQuestions(quizzQuestionsAmount, currentPage)
+            /*quizzQuestions.classList.remove('escondido')
+            quizzInfo.classList.add('escondido') APAGAR */
+            numberOfQuestions = quizzQuestionsAmount;
+            RenderQuestions(quizzQuestionsAmount, currentPage);
         }
     }
 
@@ -152,15 +168,15 @@ function GetUserQuizzData(page) {
     if (page === 'niveis') {
 
         if (currentPage === numberOfQuestions) {
-            EditThisQuestion(numberOfQuestions)
+            EditThisQuestion(numberOfQuestions);
             // caso o usuario esteja na ultima pagina de perguntas e clique no botao
             // entao verificamos se ele pode prosseguir
         }
         if (ValidateUserQuizz) {
-            quizzQuestions.classList.add('escondido')
-            quizzLevels.classList.remove('escondido')
-            currentPage = 1
-            RenderLevels(currentPage, numberOfLevels)
+           /* quizzQuestions.classList.add('escondido')
+            quizzLevels.classList.remove('escondido') APAGAR*/
+            currentPage = 1;
+            RenderLevels(currentPage, numberOfLevels);
         }
     }
 
@@ -168,36 +184,59 @@ function GetUserQuizzData(page) {
     if (page === 'sucesso') {
 
         if (currentPage === numberOfLevels) {
-            EditThisLevel(numberOfLevels)
+            EditThisLevel(numberOfLevels);
         }
         if (ValidateUserQuizzLevel) {
-            quizzLevels.classList.add('escondido')
-            quizzSuccess.classList.remove('escondido')
+            /*quizzLevels.classList.add('escondido')
+            quizzSuccess.classList.remove('escondido') APAGAR*/
 
             // ao criar um quizz, o armazenamento local do usuario tera essa informacao
             window.localStorage.setItem('UserCreateQuizz', 'true');
-            GenerateUserRequestPost(numberOfQuestions, numberOfLevels)
-            document.querySelector(".sucesso-quizz-box").style.backgroundImage = `url('${quizzUrl}')`
+            GenerateUserRequestPost(numberOfQuestions, numberOfLevels);
+            document.querySelector(".sucesso-quizz-box").style.backgroundImage = `url('${quizzUrl}')`;
         }
     }
 
     //Acessar o quizz depois de criado
     if (page === 'acesso') {
-        page3.classList.add('escondido')
-        page2.classList.remove('escondido')
+        /*page3.classList.add('escondido')
+        page2.classList.remove('escondido') APAGAR*/
 
         if (GetThisQuizzID_ != undefined) {
-            getOnlyQuizz(GetThisQuizzID_)
+            getOnlyQuizz(GetThisQuizzID_);
         }
     }
 
     //Voltar para home, após criar o quizz. Este constar na tela inicial
     if (page === 'home') {
-        page3.classList.add('escondido')
-        quizzSuccess.classList.add('escondido')
-        page1.classList.remove('escondido')
+        /*page3.classList.add('escondido')
+        quizzSuccess.classList.add('escondido') APAGAR */
+        page1.classList.remove('escondido');
     }
 }
+
+//Validando as informações colocadas para criar o quizz
+
+function CheckInfoQuizzData(title, url, questions, levels) {
+
+    if (title.length < 20 || title.length > 60) {
+        return alert('O título do quizz deve ter no mínimo 20 e no máximo 65 letras, incluindo espaços');
+    }
+    if (!CheckURL(url)) {
+        // if (url.includes('http://') || url.includes('https://') === false) {
+        return alert('A URL da imagem deve ter formato de URL (https:// ou http://');
+    }
+    if (questions < 3 || isNaN(questions)) {
+        return alert('A quantidade de perguntas deve ser no mínimo 3');
+    }
+    if (levels < 2 || isNaN(levels)) {
+        return alert('A quantidade de niveis deve ser no mínimo 2');
+    }
+    numberOfLevels = levels
+    return true
+}
+
+let GetFormData = []
 
 //Aparecer a quantidade de perguntas de forma dinâmica conforme a escolha do usuário
 function RenderQuestions(number, page) {
@@ -229,32 +268,9 @@ function RenderQuestions(number, page) {
     }
     QuestionsInputContainer.innerHTML += `
     <div class="quizz-question-final-btn">
-        <button onclick="GetUserQuizzData('levels')">Prosseguir pra criar níveis</button>
+        <button onclick="changeToLevels(), GetUserQuizzData('levels')">Prosseguir pra criar níveis</button>
     </div>`
 }
-
-//Validando as informações colocadas para criar o quizz
-
-function CheckInfoQuizzData(title, url, questions, levels) {
-
-    if (title.length < 20 || title.length > 60) {
-        return alert('O título do quizz deve ter no mínimo 20 e no máximo 65 letras, incluindo espaços')
-    }
-    if (!CheckURL(url)) {
-        // if (url.includes('http://') || url.includes('https://') === false) {
-        return alert('A URL da imagem deve ter formato de URL (https:// ou http://')
-    }
-    if (questions < 3 || isNaN(questions)) {
-        return alert('A quantidade de perguntas deve ser no mínimo 3')
-    }
-    if (levels < 2 || isNaN(levels)) {
-        return alert('A quantidade de niveis deve ser no mínimo 2')
-    }
-    numberOfLevels = levels
-    return true
-}
-
-let GetFormData = []
 
 //Pega o valores colocados dentro dos input ao criar as perguntas
 function EditThisQuestion(number) {
@@ -366,7 +382,7 @@ function RenderLevels(page, number) {
         }
     }
     LevelsInputContainer.innerHTML += `
-    <div class="quizz-levels-final-btn"><button onclick="GetUserQuizzData('sucesso')">Finalizar Quizz</button></div>`
+    <div class="quizz-levels-final-btn"><button onclick="changeToSuccess(),GetUserQuizzData('sucesso')">Finalizar Quizz</button></div>`
 }
 
 //Pega as informações que o usuário colocou para os níveis

@@ -12,7 +12,6 @@
 body{
     font-family: 'Roboto';
     overflow-x: hidden;
-    background:  #E5E5E5;   
 }
 
 header{
@@ -43,7 +42,6 @@ header h1 {
 }
 
 .info-quizz{
-    position: absolute;
     top: 0px;
     width: 100%;
     display: flex;
@@ -123,7 +121,6 @@ button:hover{
 /* Estilo Tela 3.2*/
 
 .perguntas-quizz{
-    position: absolute;
     top: 80px;
     width: 100%;
     height: calc(200vh - 80px);
@@ -225,7 +222,6 @@ button:hover{
 /* Estilo Tela 3.3*/
 
 .niveis-quizz {
-    position: absolute;
     top: 80px;
     width: 100%;
     height: calc(100vh - 80px);
@@ -329,7 +325,6 @@ button:hover{
 /* Estilo Tela 3.4*/
 
 .sucesso-quizz {
-    position: absolute;
     top: 80px;
     width: 100%;
     height: calc(100vh - 80px);
