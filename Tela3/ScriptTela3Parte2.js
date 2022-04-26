@@ -5,6 +5,7 @@ let responseQuizz;
 let newQuizz={};
 let NewQuestion = [];
 let NewLevel = [];
+
 function CreateNewQuizz(){
     
     newQuizz.title = quizzTitle;
@@ -55,6 +56,7 @@ function createNewQuestion(index){
     }
     return newDataQuestion;
 } 
+
 function createNewLevel(index){
     const newDataLevel = {
         "title": GetFormLevel[index].quizzLevel,
@@ -75,6 +77,7 @@ function postQuizz(quizz) {
         console.error(error)
     })
 }
+
 function saveDataQuizz(load){
     responseQuizz=load.data;
     id=responseQuizz.id;
@@ -87,6 +90,7 @@ function saveDataQuizz(load){
     setImageQuizz();
     getDataQuizz();
 }
+
 function getDataQuizz(){
     dataId= ""
     dataKey = "";
@@ -109,6 +113,7 @@ function getDataQuizz(){
     
     GetAllQuizzes()
 }
+
 function setImageQuizz(){
     const element = document.querySelector(".quizz-success-box").style.backgroundImage = `url('${quizzUrl}')`;
 }

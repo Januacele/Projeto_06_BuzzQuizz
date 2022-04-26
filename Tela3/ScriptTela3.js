@@ -70,6 +70,8 @@ function GetUserQuizzData(page) {
         }
     }
     if (page === 'acess') {
+
+        //chamarUmQuizz(GetThisQuizzID_); essa é a função do script tela2 que é pra usar, mandando o ID
         page3.classList.add('hidden')
         page2.classList.remove('hidden')
 
