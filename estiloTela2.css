@@ -15,6 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    word-break: break-all;
 }
 
 .imagemQuizz {
@@ -34,11 +35,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    word-wrap: break-word;
+    word-break: break-all;
+    padding: 10px;
 }
 
 .pergunta {
-    width: 60%;
+    width: 760px;
     background-color: #FFFFFF;
     margin-top: 40px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
@@ -63,7 +65,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    word-wrap: break-all;
+    word-break: break-all;
     margin: 30px auto 20px auto;
     padding: 10px;
 }
@@ -73,26 +75,31 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    word-break: break-all;
 }
 
 .resposta img {
-    min-width: 100%;
+    width: 100%;
     height: 175px;
 }
 
 .resposta span {
-    width: 330px;
+    width: 100%;
     font-weight: 700;
     font-size: 20px;
     margin: 5px 0px 20px 0px;
-    word-break: break-word;
+    display: flex;
+    flex-wrap: wrap;
+    word-break: break-all;
 }
 
 .resposta {
-    min-width: 45%;
+    width: 48%;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     cursor: pointer;
+    word-break: break-all;
 }
 
 .opaca {
@@ -112,7 +119,7 @@
 }
 
 .nivel {
-    width: 60%;
+    width: 760px;
     background-color: #FFFFFF;
     margin: 40px 0px 60px 0px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
@@ -137,6 +144,7 @@
     text-align: center;
     margin: 30px auto 20px auto;
     padding: 10px;
+    word-break: break-all;
 }
 
 .resumoNivel {
@@ -145,6 +153,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 40px;
+    word-break: break-all;
 }
 
 .nivel img {
@@ -161,6 +170,7 @@
     display: flex;
     flex-wrap: wrap;
     text-align: justify;
+    word-break: break-all;
 }
 
 .reiniciar {
@@ -184,4 +194,49 @@
     font-weight: 400;
     margin-bottom: 60px;
     cursor: pointer;
+}
+
+@media(max-width: 1100px){
+
+    .imagemQuizz {
+        height: 140px;
+    }
+
+    .imagemQuizz span {
+        font-size: 20px;
+    }
+
+    .pergunta {
+        width: 400px;
+    }
+
+    .nivel{
+        width: 400px;
+    }
+
+    .resposta img{
+        height: 110px;
+    }
+
+    .resposta span {
+        width: 150px;
+        font-size: 13px;
+        word-break: break-all;
+    }
+
+    .tituloPergunta {
+        height: 90px;
+        font-size: 20px;
+    }
+
+    .nivel img {
+        width: 360px;
+        height: 255px;
+        margin-bottom: 15px;
+    }
+
+    .nivel div {
+        width: 360px;
+        min-height: 0px;
+    }
 }

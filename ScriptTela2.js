@@ -11,7 +11,7 @@ function iniciarTela1(){
     tela1.innerHTML = ` <header>
                             BuzzQuizz
                         </header>
-                        <main>
+                        <main class="primeiraTela">
                             <div class="novoQuizz">
                                 <div class="quizzesUser">Você não criou nenhum quizz ainda :(</div>
                                 <div class="criarQuizz"><button onclick="GetUserQuizzData('info')"data-identifier="create-quizz">Criar Quizz</div>
