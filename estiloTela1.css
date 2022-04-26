@@ -21,7 +21,7 @@ main {
 
 .novoQuizz {
     height: 180px;
-    width: 80%;
+    width: 1010px;
     font-size: 20px;
     font-weight: 400;
     border: 2px dashed lightgray;
@@ -66,14 +66,14 @@ main {
     cursor: pointer;
 }
 
-main span {
+.primeiraTela span {
     font-family: 'Roboto';
     margin-bottom: 10px;
 }
 
 .quizzes {
     height: 100%;
-    width: 80%;
+    width: 1010px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -101,23 +101,14 @@ main span {
     padding: 10px;
 }
 
-@media (max-width: 1250px){
-
-    main {
-        width: 840px;
-        margin: 0px auto 0px auto;
-    }
-
-}
-
 @media (max-width: 1100px){
 
-    main {
+    .primeiraTela {
         width: 380px;
         margin: 0px auto 0px auto;
     }
 
-    main span {
+    .primeiraTela span {
         min-width: 327px;
     }
 

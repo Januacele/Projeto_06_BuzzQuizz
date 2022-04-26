@@ -11,7 +11,7 @@ function iniciarTela1(){
     tela1.innerHTML = ` <header>
                             BuzzQuizz
                         </header>
-                        <main>
+                        <main class="primeiraTela">
                             <div class="novoQuizz">
                                 <div class="quizzesUser">Você não criou nenhum quizz ainda :(</div>
                                 <div class="criarQuizz"><button onclick="GetUserQuizzData('info')"data-identifier="create-quizz">Criar Quizz</div>
@@ -154,9 +154,14 @@ function mostrarNivel(){
     let acertosPercentual = Math.round((numRespostasCertas / numPerguntas) * 100);
     let niveis = quizz.levels;
     let indiceNivel;
-    console.log(niveis);
     let caixaNivel = document.querySelector("main");
-    
+
+    niveis = niveis.sort(function(a, b) {
+        return parseInt(a.minValue) - parseInt(b.minValue);
+    });
+
+    console.log(niveis);
+
     for(let i = 0; i < niveis.length; i++){
         if(acertosPercentual >= niveis[i].minValue){
             indiceNivel = i;
