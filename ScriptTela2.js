@@ -154,9 +154,14 @@ function mostrarNivel(){
     let acertosPercentual = Math.round((numRespostasCertas / numPerguntas) * 100);
     let niveis = quizz.levels;
     let indiceNivel;
-    console.log(niveis);
     let caixaNivel = document.querySelector("main");
-    
+
+    niveis = niveis.sort(function(a, b) {
+        return parseInt(a.minValue) - parseInt(b.minValue);
+    });
+
+    console.log(niveis);
+
     for(let i = 0; i < niveis.length; i++){
         if(acertosPercentual >= niveis[i].minValue){
             indiceNivel = i;

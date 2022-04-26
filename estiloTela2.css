@@ -219,13 +219,12 @@
     }
 
     .resposta span {
-        width: 150px;
         font-size: 13px;
         word-break: break-all;
     }
 
     .tituloPergunta {
-        height: 90px;
+        min-height: 90px;
         font-size: 20px;
     }
 
