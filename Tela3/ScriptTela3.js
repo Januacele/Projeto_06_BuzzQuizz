@@ -488,3 +488,4 @@ function createNewLevel(index) {
   };
   return newDataLevel;
 }
+}
