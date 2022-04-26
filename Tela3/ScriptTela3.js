@@ -79,18 +79,11 @@ function GetUserQuizzData(page) {
         ".quizz-success-box"
       ).style.backgroundImage = `url('${quizzUrl}')`;
     }
-<<<<<<< HEAD
-  }
-  if (page === "acess") {
-    page3.classList.add("hidden");
-    page2.classList.remove("hidden");
-=======
     if (page === 'acess') {
 
         //chamarUmQuizz(GetThisQuizzID_); essa é a função do script tela2 que é pra usar, mandando o ID
         page3.classList.add('hidden')
         page2.classList.remove('hidden')
->>>>>>> 8aa242353edf111ca840bbbfd2542df25f1b8f9b
 
     if (GetThisQuizzID_ != undefined) {
       getOnlyQuizz(GetThisQuizzID_);
@@ -485,6 +478,7 @@ function createNewQuestion(index) {
   }
   return newDataQuestion;
 }
+
 function createNewLevel(index) {
   const newDataLevel = {
     title: GetFormLevel[index].quizzLevel,
