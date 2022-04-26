@@ -95,7 +95,7 @@ function getDataQuizz(){
     const dataKeyString = localStorage.getItem("key");
     dataKey = JSON.parse(dataKeyString);
     if(dataId.length != 0){
-        document.querySelector('.user-quizz-container').classList.remove("hidden");
+        document.querySelector('.nuser-quizz-container').classList.remove("hidden");
         document.querySelector('.userQuizzTitle').classList.remove("hidden");
         document.querySelector('.buttonQuizzTitle').classList.remove("hidden");
         document.querySelector('.create-quizz-container').classList.add("hidden");
@@ -107,7 +107,7 @@ function getDataQuizz(){
         document.querySelector('.create-quizz-container').classList.remove("hidden");  
     }
     
-    GetAllQuizzes()
+    listarQuizzes()
 }
 function setImageQuizz(){
     const element = document.querySelector(".quizz-success-box").style.backgroundImage = `url('${quizzUrl}')`;

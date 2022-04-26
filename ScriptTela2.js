@@ -3,7 +3,6 @@ let quizz, arrayRespostas, numPerguntas, idQuizz, contadorRespostas, fimDoQuizz;
 let UM_SEGUNDO = 1000;
 let API = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
 
-
 iniciarTela1();
 
 //carregar Tela 1 (página inicial)
@@ -26,6 +25,32 @@ function iniciarTela1(){
     promise.then(listarQuizzes);
     promise.catch(tratarErro);   
 }
+
+function getOnlyQuizz(load){
+    let tela1 = document.querySelector(".Tela1");
+    tela1.innerHTML = ` <header>
+                            BuzzQuizz
+                        </header>
+                        <main class="primeiraTela">
+                            <div class="user-quizz-container" data-identifier="user-quizzes">
+                                <div class='user-quizz-title-p'>
+                                    <p>Seus Quizzes</p>
+                                    <div class='el-btn' onclick="GetUserQuizzData('info')">
+                                        <button data-identifier="create-quizz">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <span style="width: 80%; font-weight: 700">Todos os Quizzes</span>
+                            <div class="quizzes"></div>
+
+                        </main>`
+    //get dos quizzes na API
+    id = load;
+    const promise = axios.get(urlOnlyQuizz + id);
+    promise.then(chamarUmQuizz); 
+}
+
+
 
 function tratarErro(){
     alert('Não foi possível carregar a página, por favor tente novamente');
@@ -60,7 +85,7 @@ function carregarQuizz(dadosAPI){
     fimDoQuizz = 0;
     quizz = dadosAPI.data;
     let tela2 = document.querySelector(".Tela1");    
-    tela2.innerHTML = `<div class="Tela2 hidden">
+    tela2.innerHTML = `<div class="Tela2">
                         <header>
                             BuzzQuizz
                         </header>
