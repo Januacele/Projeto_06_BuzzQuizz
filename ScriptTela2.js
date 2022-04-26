@@ -1,6 +1,6 @@
 //variveis globais
 let quizz, arrayRespostas, numPerguntas, idQuizz, contadorRespostas, fimDoQuizz;
-let UM_SEGUNDO = 1000;
+let DOIS_SEGUNDOS = 2000;
 let API = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
 
 iniciarTela1();
@@ -16,10 +16,10 @@ function iniciarTela1(){
                                 <div class="quizzesUser">Você não criou nenhum quizz ainda :(</div>
                                 <div class="criarQuizz"><button onclick ="GetUserQuizzData('info')"data-identifier="create-quizz">Criar Quizz</div>
                             </div>
-                            <span style="width: 80%; font-weight: 700">Todos os Quizzes</span>
+                            <span style="font-weight: 700">Todos os Quizzes</span>
                             <div class="quizzes"></div>
 
-                        </main>`
+                        </main>`;
     //get dos quizzes na API
     let promise = axios.get(`${API}`);
     promise.then(listarQuizzes);
@@ -67,7 +67,7 @@ function listarQuizzes(resposta){
                                     rgba(0, 0, 0, 0.5) 65%, #000000 100%), url(${quizzes[i].image})"
                                     onclick="chamarUmQuizz(${quizzes[i].id})">
                                     <span>${quizzes[i].title}</span>
-                                    </div>`
+                                    </div>`;
     }
 }
 
@@ -103,7 +103,7 @@ function carregarQuizz(dadosAPI){
     cabecalho.innerHTML = `<div class="imagemQuizz" style="background-image: 
                             linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url(${quizz.image})">
                             <span>${quizz.title}</span>
-                            </div>`
+                            </div>`;
 
     //boxes de perguntas
     for(let i = 0; i < numPerguntas; i++){
@@ -112,23 +112,25 @@ function carregarQuizz(dadosAPI){
                                         ${quizz.questions[i].title}
                                     </div>
                                     <div class="respostas"></div>
-                               </div>`
+                               </div>`;
     }
 
     let respostas = document.querySelectorAll(".respostas");
 
     //listar respostas em ordem aleatória
     for(let i = 0; i < respostas.length; i++){
+
         arrayRespostas = quizz.questions[i].answers.sort(aleatorio); 
+
         for(let j = 0; j < quizz.questions[i].answers.length; j++){
             if(quizz.questions[i].answers[j].isCorrectAnswer){
                 respostas[i].innerHTML += `<div class="resposta certa" onclick="selecionaResposta(this)">
                                         <img src="${quizz.questions[i].answers[j].image}" />
-                                        <span>${quizz.questions[i].answers[j].text}</span>`
+                                        <span>${quizz.questions[i].answers[j].text}</span>`;
             } else {
                 respostas[i].innerHTML += `<div class="resposta errada" onclick="selecionaResposta(this)">
                                         <img src="${quizz.questions[i].answers[j].image}" />
-                                        <span>${quizz.questions[i].answers[j].text}</span>`
+                                        <span>${quizz.questions[i].answers[j].text}</span>`;
             }
         }
     }
@@ -157,10 +159,10 @@ function selecionaResposta(elemento){
         }
     }
 
-    setTimeout(rolarPergunta, 2*UM_SEGUNDO);
+    setTimeout(rolarPergunta, DOIS_SEGUNDOS);
 
     if(contadorRespostas === numPerguntas && fimDoQuizz === 0){
-        setTimeout(mostrarNivel, 2*UM_SEGUNDO);
+        setTimeout(mostrarNivel, DOIS_SEGUNDOS);
     }
 }
 
@@ -186,8 +188,6 @@ function mostrarNivel(){
         return parseInt(a.minValue) - parseInt(b.minValue);
     });
 
-    console.log(niveis);
-
     for(let i = 0; i < niveis.length; i++){
         if(acertosPercentual >= niveis[i].minValue){
             indiceNivel = i;
@@ -203,7 +203,7 @@ function mostrarNivel(){
                                     </div>
                                </div>
                                <span class="reiniciar" onclick="chamarUmQuizz(idQuizz)">Reiniciar Quizz</span>
-                               <span class="voltarTela1" onclick="iniciarTela1()">Voltar para home</span>`
+                               <span class="voltarTela1" onclick="iniciarTela1()">Voltar para home</span>`;
 
     aparecerNivel = document.querySelector(".reiniciar");
     aparecerNivel.scrollIntoView({ block: 'nearest',  behavior: 'smooth' });
