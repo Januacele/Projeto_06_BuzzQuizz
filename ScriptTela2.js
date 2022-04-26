@@ -3,6 +3,7 @@ let quizz, arrayRespostas, numPerguntas, idQuizz, contadorRespostas, fimDoQuizz;
 let UM_SEGUNDO = 1000;
 let API = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
 
+
 iniciarTela1();
 
 //carregar Tela 1 (página inicial)
@@ -14,7 +15,7 @@ function iniciarTela1(){
                         <main class="primeiraTela">
                             <div class="novoQuizz">
                                 <div class="quizzesUser">Você não criou nenhum quizz ainda :(</div>
-                                <div class="criarQuizz"><button onclick="GetUserQuizzData()"data-identifier="create-quizz">Criar Quizz</div>
+                                <div class="criarQuizz"><button onclick ="GetUserQuizzData('info')"data-identifier="create-quizz">Criar Quizz</div>
                             </div>
                             <span style="width: 80%; font-weight: 700">Todos os Quizzes</span>
                             <div class="quizzes"></div>
@@ -59,7 +60,7 @@ function carregarQuizz(dadosAPI){
     fimDoQuizz = 0;
     quizz = dadosAPI.data;
     let tela2 = document.querySelector(".Tela1");    
-    tela2.innerHTML = `<div class="Tela2">
+    tela2.innerHTML = `<div class="Tela2 hidden">
                         <header>
                             BuzzQuizz
                         </header>

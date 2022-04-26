@@ -1,105 +1,109 @@
 
 /* ESTILO GERAL */
 
-*{
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+* {
     box-sizing: border-box;
 }
 
-.hidden{
-    display: none;
-}
-
-body{
-    font-family: 'Roboto';
+body {
+    background: #FAFAFA;
     overflow-x: hidden;
 }
 
-header{
+main {
+
+    padding-right: 5%;
+}
+
+header {
+    position: fixed;
     width: 100%;
     height: 69px;
-    left: 0px;
-    top: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #EC362D;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+    background-color: #EC362D;
 }
 
 header h1 {
+    font-family: Roboto;
     font-weight: bold;
     font-size: 37px;
     line-height: 43px;
     color: #FFFFFF;
 }
 
+.hidden {
+    display: none!important;
+}
+
 /* Estilo Tela 3.1*/
 
-.Page3{
+.page-3 {
     width: 100%;
     height: auto;
     position: relative;
 }
 
-.quizz-info{
-    top: 0px;
+/* ------------------------------------------------- */
+
+.quizz-info {
+    position: absolute;
+    top: 80px;
     width: 100%;
+    height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.quizz-info-title{
+.quizz-info-title {
     width: 100%;
     height: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
 }
 
-.quizz-info-title h2{
+.quizz-info-title h1 {
+    font-family: Roboto;
     font-weight: bold;
     font-size: 20px;
     line-height: 23px;
 }
 
-.quizz-info-input-container{
+.quizz-info-input-container {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #ffffff;
-    margin-top: 80px;
+    background-color: #FFFFFF;
+    /* background: red; */
+    margin-bottom: 100px;
 }
 
-.quizz-info-input-container input{
+.quizz-info-input-container input {
     margin-top: 1%;
     margin-bottom: 1%;
-    width: 80%;
-    height: 46px;
-    margin-left: 120px;
+    width: 100%;
+    height: 12%;
 }
 
-::placeholder{
-    font-style: italic;
-    font-size: 19px;
-    color: #BABABA;
-}
-
-.quizz-info-button-box{
+.quizz-info-button-box {
     width: 100%;
     height: 25%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 40px;
 }
 
-.quizz-info-button-box button{
-    width: 80%;
-    height: 46px;
+.quizz-info-button-box button {
+    width: 100%;
+    height: 50%;
     background: #EC362D;
     border-radius: 15px;
     border: none;
@@ -109,43 +113,41 @@ header h1 {
     color: #FFF5F4;
 }
 
-button:hover{
-    cursor: pointer;
-    filter: brightness(90%);
-}
+/* ------------------------------------------------- */
 
-
-/* Estilo Tela 3.2*/
-
-.quizz-questions{
+.quizz-questions {
+    position: absolute;
     top: 80px;
     width: 100%;
     height: calc(200vh - 80px);
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #fafafa;
+    background: #fafafa;
 }
 
-.quizz-questions-title{
+.quizz-questions-title {
     width: 100%;
     height: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* background-color: salmon */
 }
 
-.quizz-questions-title h2{
+.quizz-questions-title h1 {
+    font-family: Roboto;
     font-weight: bold;
     font-size: 23px;
     line-height: 27px;
 }
 
-.quizz-questions-input-container{
+.quizz-questions-input-container {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
+    /* background-color: lightgreen; */
 }
 
 .quizz-questions-input-container input {
@@ -154,9 +156,6 @@ button:hover{
     margin-top: 1%;
     margin-bottom: 1%;
 }
-
-
-/*estilos do que está no JS Tela3*/
 
 .quizz-questions-text {
     width: 100%;
@@ -216,9 +215,10 @@ button:hover{
     color: #FFF5F4;
 }
 
-/* Estilo Tela 3.3*/
+/* ------------------------------------------------- */
 
 .quizz-levels {
+    position: absolute;
     top: 80px;
     width: 100%;
     height: calc(100vh - 80px);
@@ -237,7 +237,7 @@ button:hover{
     /* background-color: salmon */
 }
 
-.quizz-levels-title h2 {
+.quizz-levels-title h1 {
     font-family: Roboto;
     font-weight: bold;
     font-size: 23px;
@@ -259,7 +259,6 @@ button:hover{
     margin-bottom: 1%;
 }
 
-/*estilos do que está no JS Tela3*/
 .quizz-levels-text {
     width: 100%;
     height: 5%;
@@ -318,10 +317,10 @@ button:hover{
     color: #FFF5F4;
 }
 
-
-/* Estilo Tela 3.4*/
+/* ------------------------------------------------- */
 
 .quizz-success {
+    position: absolute;
     top: 80px;
     width: 100%;
     height: calc(100vh - 80px);
@@ -337,11 +336,11 @@ button:hover{
     display: flex;
     justify-content: center;
     align-items: center;
-    
     /* background-color: salmon */
 }
 
-.quizz-success-title h2 {
+.quizz-success-title h1 {
+    font-family: Roboto;
     font-weight: bold;
     font-size: 23px;
     line-height: 27px;
@@ -362,7 +361,7 @@ button:hover{
     border-radius: 5px;
 }
 
-.quizz-success-btn {
+.quizz-sucess-btn {
     margin-top: 20px;
     width: 100%;
     height: 10%;
@@ -375,36 +374,28 @@ button:hover{
     border-radius: 15px;
     border: none;
     color: #FFFFFF;
-
 }
+
+/* ------------------------------------------------- */
 
 /* mobile */
 @media (max-width: 700px) {
-    .quizz-info-input-container, 
-    .quizz-questions-input-container, 
-    .quizz-levels-input-container, 
-    .quizz-success-container {
+    .quizz-info-input-container, .quizz-questions-input-container, .quizz-levels-input-container, .quizz-success-container {
         width: 90%;
     }
 }
 
 /* desktop */
 @media (min-width: 700px) {
-    .quizz-info-title, 
-    .quizz-info-input-container, 
-    .quizz-questions-titulo, 
-    .quizz-questions-input-container, 
-    /*.quizz-input-title,*/ 
-    .quizz-levels-input-container, 
-    .quizz-success-container {
+    .quizz-info-title, .quizz-info-input-container, 
+    .quizz-questions-title, .quizz-questions-input-container, 
+    .quizz-input-title, .quizz-levels-input-container, .quizz-success-container {
         width: 60%;
     }
-    /*.quizz-question-final-btn button, 
-    .quizz-levels-final-btn button,*/ 
-    .quizz-success-btn {
+    .quizz-question-final-btn button, .quizz-levels-final-btn button, .quizz-sucess-btn {
         width: 50%;
     }
-    .quizz-info-button-box {
+    .quizz-info-button-box button {
         width: 60%;
         margin-top: 5%;
     }
